@@ -34,16 +34,40 @@ namespace Tetris
             Board.ArrivedAtBottom += Board_ArrivedAtBottom;
 
             timer1.Interval = 700;
-            // timer1.Start();
             timer1.Enabled = false;
 
         }
+        #region variables
 
-        private void Board_ArrivedAtBottom()
-        {
-            timer1.Stop();
-            timer1.Dispose();
-        }
+        int RandomBlock;
+
+        Bitmap Draft;
+
+        T_Block t_block;
+        Square square;
+        Stick stick;
+        Z_Block z_block;
+
+        Painter painter;
+        Board board;
+
+        ReturnCoordinates returnCoordinates;
+        MoveLeft moveLeft;
+        MoveRight moveRight;
+        MoveDown moveDown;
+        Rotate rotate;
+
+        static int BlockSize;
+        static Color BlockColor;
+        Point[] TempCoordinates = new Point[4];
+
+        Random rand = new Random();
+        Point StartPoint;
+
+        #endregion
+
+
+        #region methods
 
         void GetRandomBlock()
         {
@@ -142,7 +166,6 @@ namespace Tetris
             }
         }
 
-
         public Bitmap Image
         {
             get
@@ -167,30 +190,9 @@ namespace Tetris
             }
         }
 
-        int RandomBlock;
+        #endregion
 
-        Bitmap Draft;
-
-        T_Block t_block;
-        Square square;
-        Stick stick;
-        Z_Block z_block;
-
-        Painter painter;
-        Board board;
-
-        ReturnCoordinates returnCoordinates;
-        MoveLeft moveLeft;
-        MoveRight moveRight;
-        MoveDown moveDown;
-        Rotate rotate;
-
-        static int BlockSize;
-        static Color BlockColor;
-        Point[] TempCoordinates = new Point[4];
-
-        Random rand = new Random();
-        Point StartPoint;
+        #region events
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -249,14 +251,17 @@ namespace Tetris
             }
         }
 
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        private void Board_ArrivedAtBottom()
         {
-           // MessageBox.Show(e.ToString());
+            timer1.Stop();
+            timer1.Dispose();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             timer1.Start();
         }
+
+        #endregion
     }
 }

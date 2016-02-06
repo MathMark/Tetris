@@ -24,14 +24,18 @@ namespace Tetris
             painter = new Painter(Draft, BlockSize, Sheet.Width, Sheet.Height);
 
 
-            RImage = DrawRandomBlock();
-
             board = new Board(Sheet.Height / BlockSize, Sheet.Width / BlockSize);
 
             StartPoint = new Point(4 * BlockSize, 0);
+
+            RandomBlock = rand.Next(0, 4);
             GetRandomBlock();
+            RandomBlock = rand.Next(0, 4);
+            RImage = DrawRandomBlock();
 
             Board.ArrivedAtBottom += Board_ArrivedAtBottom;
+
+
 
             timer1.Interval = 700;
             timer1.Enabled = false;
@@ -71,9 +75,6 @@ namespace Tetris
 
         void GetRandomBlock()
         {
-            RandomBlock = rand.Next(0, 4);
-            //RandomBlock = 0;
-
             int RandomPosition = rand.Next(0, 4);
 
             switch (RandomBlock)
@@ -139,7 +140,7 @@ namespace Tetris
 
             Point Position = new Point(2 * BlockSize, 2 * BlockSize);
 
-            switch(rand.Next(0,4))
+            switch(RandomBlock)
             {
                 case 0:
                     t_block = new T_Block(RandomDraft, Position, RandomPosition, BlockSize);
@@ -255,6 +256,11 @@ namespace Tetris
         {
             timer1.Stop();
             timer1.Dispose();
+            GetRandomBlock();
+
+            RandomBlock = rand.Next(0, 4);
+            RImage = DrawRandomBlock();
+            timer1.Start();
         }
 
         private void Form1_Load(object sender, EventArgs e)

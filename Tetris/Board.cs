@@ -67,12 +67,30 @@ namespace Tetris
                 }
             }
         }
-
+        public bool Exists(Point coordinates)
+        {
+            if ((coordinates.X >= 0) && (coordinates.X < board.GetLength(1))
+                    && (coordinates.Y >= 0) && (coordinates.Y < board.GetLength(0)))
+            {
+                if (board[coordinates.Y, coordinates.X].Existence == true)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
         public void SetValue(Point[]coordinates,Color color)
         {
             foreach(Point coordinate in coordinates)
             {
-                if (coordinate.Y == board.GetLength(0)-1)
+                if ((coordinate.Y == board.GetLength(0)-1)||(Exists(new Point(coordinate.X,coordinate.Y+1))==true))
                 {
                     board[coordinate.Y, coordinate.X] = new Block(true, color);
                     ArrivedAtBottom();

@@ -28,6 +28,7 @@ namespace Tetris
 
             board = new Board(Sheet.Height / BlockSize, Sheet.Width / BlockSize);
 
+            StartPoint = new Point(4 * BlockSize, 0);
             GetRandomBlock();
 
             Board.ArrivedAtBottom += Board_ArrivedAtBottom;
@@ -189,7 +190,7 @@ namespace Tetris
         Point[] TempCoordinates = new Point[4];
 
         Random rand = new Random();
-        Point StartPoint = new Point(4*BlockSize,0);
+        Point StartPoint;
 
         private void timer1_Tick(object sender, EventArgs e)
         {

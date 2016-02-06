@@ -56,8 +56,8 @@ namespace Tetris
         {   
             for(int i=0;i<baseCoordinates.Length;i++)
             {
-                baseCoordinates[i].X = Location.X/BlockSize;
-                baseCoordinates[i].Y = Location.Y/BlockSize;
+                baseCoordinates[i].X = BoardLocation.X;
+                baseCoordinates[i].Y = BoardLocation.Y;
             }
         }
         private void FillCoordinates()

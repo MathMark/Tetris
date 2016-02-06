@@ -100,19 +100,17 @@ namespace Tetris
                     InitCoordinates();
                     SetMeasurements();
 
-                    for(int i=1;i<baseCoordinates.Length;i++)
-                    {
-                        baseCoordinates[i].Y++;
-                    }
+                    baseCoordinates[1].Y++;
+                    baseCoordinates[2].Y += 2;
+                    baseCoordinates[3].Y += 3;
                     break;
                 case 1:
                     InitCoordinates();
                     SetMeasurements();
 
-                    for (int i = 1; i < baseCoordinates.Length; i++)
-                    {
-                        baseCoordinates[i].X++;
-                    }
+                    baseCoordinates[1].X++;
+                    baseCoordinates[2].X += 2;
+                    baseCoordinates[3].X += 3;
                     break;
 
             }

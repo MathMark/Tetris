@@ -24,8 +24,6 @@ namespace Tetris
         Graphics painter;
 
         private Point BoardLocation;
-        private const int width=2;
-        private const int height=2;
         int BlockSize;
 
         Point[] baseCoordinates = new Point[4];
@@ -36,8 +34,6 @@ namespace Tetris
             painter = Graphics.FromImage(sheet);
             this.Location = Location;
 
-            FillCoordinates();
-
     }
         Board board;
         public Square(Point Location, int BlockSize,Board board)
@@ -47,7 +43,8 @@ namespace Tetris
 
             this.board = board;
             BoardLocation = new Point(Location.X / BlockSize, Location.Y / BlockSize);
-            FillCoordinates();
+
+            InitCoordinates();
 
         }
 
@@ -59,17 +56,12 @@ namespace Tetris
                 baseCoordinates[i].X = BoardLocation.X;
                 baseCoordinates[i].Y = BoardLocation.Y;
             }
-        }
-        private void FillCoordinates()
-        {
-            InitCoordinates();
+            baseCoordinates[1].X++;
 
-            baseCoordinates[1].X ++;
+            baseCoordinates[2].Y++;
 
-            baseCoordinates[2].Y ++;
-
-            baseCoordinates[3].X ++;
-            baseCoordinates[3].Y ++;
+            baseCoordinates[3].X++;
+            baseCoordinates[3].Y++;
         }
 
         public Point[] returnCoordinates()
@@ -81,14 +73,10 @@ namespace Tetris
         {
            painter.FillRectangle(new SolidBrush(color), new RectangleF(Location, new SizeF(2 * BlockSize, 2 * BlockSize)));
         }
-        public void Draw( Graphics InputPainter)
-        {
-            InputPainter.FillRectangle(new SolidBrush(color), new RectangleF(Location, new SizeF(2 * BlockSize, 2 * BlockSize)));
-        }
 
         public void MoveLeft()
         {
-            if ((BoardLocation.X > 0))
+            if (board.AskPermission(baseCoordinates, Board.ShiftToLeft(returnCoordinates())) != true)
             {
                 BoardLocation.X--;
                 for (int i = 0; i < baseCoordinates.Length; i++)
@@ -99,7 +87,7 @@ namespace Tetris
         }
         public void MoveRight()
         {
-            if ((BoardLocation.X+width <= board.CountOfColumns - 1))
+            if (board.AskPermission(baseCoordinates, Board.ShiftToRight(returnCoordinates())) != true)
             {
                 BoardLocation.X++;
                 for (int i = 0; i < baseCoordinates.Length; i++)
@@ -110,7 +98,7 @@ namespace Tetris
         }
         public void MoveDown()
         {
-            if (BoardLocation.Y+height <= board.CountOfLines - 1)
+            if (board.AskPermission(baseCoordinates, Board.ShiftToDown(returnCoordinates())) != true)
             {
                 BoardLocation.Y++;
                 for (int i = 0; i < baseCoordinates.Length; i++)
@@ -118,7 +106,6 @@ namespace Tetris
                     baseCoordinates[i].Y++;
                 }
             }
-
         }
         public void Rotate()
         {

@@ -40,23 +40,6 @@ namespace Tetris
         Board board;
 
         private Point BoardLocation;
-        private int width;
-        private int height;
-
-        private void SetMeasurements()
-        {
-            switch(Position)
-            {
-                case 0:
-                    width = 1;
-                    height = 4;
-                    break;
-                case 1:
-                    width = 4;
-                    height = 1;
-                    break;
-            }
-        }
 
         public Stick(Point Location, int position, int BlockSize,Board board)
         {
@@ -65,8 +48,7 @@ namespace Tetris
             this.Location = Location;
             this.Position = position;
 
-            ChangeCoordinates();
-            SetMeasurements();
+            InitCoordinates();
 
             this.board = board;
             BoardLocation = new Point(Location.X / BlockSize, Location.Y / BlockSize);
@@ -80,7 +62,6 @@ namespace Tetris
             painter = Graphics.FromImage(sheet);
             this.Position = position;
 
-            ChangeCoordinates();
         }
 
         private void InitCoordinates()
@@ -90,31 +71,51 @@ namespace Tetris
                 baseCoordinates[i].X = BoardLocation.X;
                 baseCoordinates[i].Y = BoardLocation.Y;
             }
-        }
-
-        private void ChangeCoordinates()
-        {
-            switch(Position)
+            switch (Position)
             {
                 case 0:
-                    InitCoordinates();
-                    SetMeasurements();
-
                     baseCoordinates[1].Y++;
+
                     baseCoordinates[2].Y += 2;
+
                     baseCoordinates[3].Y += 3;
+
                     break;
                 case 1:
-                    InitCoordinates();
-                    SetMeasurements();
-
                     baseCoordinates[1].X++;
+
                     baseCoordinates[2].X += 2;
+
                     baseCoordinates[3].X += 3;
+
                     break;
 
             }
+
         }
+
+        //private void ChangeCoordinates()
+        //{
+        //    switch(Position)
+        //    {
+        //        case 0:
+
+
+        //            baseCoordinates[1].Y++;
+        //            baseCoordinates[2].Y += 2;
+        //            baseCoordinates[3].Y += 3;
+        //            break;
+        //        case 1:
+        //            InitCoordinates();
+        //            SetMeasurements();
+
+        //            baseCoordinates[1].X++;
+        //            baseCoordinates[2].X += 2;
+        //            baseCoordinates[3].X += 3;
+        //            break;
+
+        //    }
+        //}
 
         public Point[] returnCoordinates()
         {
@@ -136,9 +137,10 @@ namespace Tetris
 
         }
 
+
         public void MoveLeft()
         {
-            if ((BoardLocation.X > 0))
+            if (board.AskPermission(baseCoordinates, Board.ShiftToLeft(returnCoordinates())) != true)
             {
                 BoardLocation.X--;
                 for (int i = 0; i < baseCoordinates.Length; i++)
@@ -149,7 +151,7 @@ namespace Tetris
         }
         public void MoveRight()
         {
-            if ((BoardLocation.X+width <= board.CountOfColumns-1))
+            if (board.AskPermission(baseCoordinates, Board.ShiftToRight(returnCoordinates())) != true)
             {
                 BoardLocation.X++;
                 for (int i = 0; i < baseCoordinates.Length; i++)
@@ -160,7 +162,7 @@ namespace Tetris
         }
         public void MoveDown()
         {
-            if(BoardLocation.Y +height<= board.CountOfLines-1)
+            if (board.AskPermission(baseCoordinates, Board.ShiftToDown(returnCoordinates())) != true)
             {
                 BoardLocation.Y++;
                 for (int i = 0; i < baseCoordinates.Length; i++)
@@ -168,8 +170,8 @@ namespace Tetris
                     baseCoordinates[i].Y++;
                 }
             }
-            
         }
+
         public void Rotate()
         {
             Position++;

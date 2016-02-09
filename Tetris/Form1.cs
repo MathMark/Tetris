@@ -28,8 +28,9 @@ namespace Tetris
 
             StartPoint = new Point(4 * BlockSize, 0);
 
-            //RandomBlock = rand.Next(0, 4);
-            RandomBlock = 0;
+            RandomBlock = rand.Next(0, 4);
+            RandomPosition = rand.Next(0, 4);
+            // RandomBlock = 3;
             GetRandomBlock();
             RandomBlock = rand.Next(0, 4);
             RImage = DrawRandomBlock();
@@ -68,6 +69,7 @@ namespace Tetris
 
         Random rand = new Random();
         Point StartPoint;
+        int RandomPosition;
 
         #endregion
 
@@ -76,8 +78,6 @@ namespace Tetris
 
         void GetRandomBlock()
         {
-            int RandomPosition = rand.Next(0, 4);
-
             switch (RandomBlock)
             {
                 case 0:
@@ -134,8 +134,6 @@ namespace Tetris
         {
             Bitmap RandomDraft = new Bitmap(RandomBSheet.Width, RandomBSheet.Height);
             Painter @Painter = new Painter(RandomDraft, BlockSize, RandomDraft.Width, RandomDraft.Height);
-
-            int RandomPosition = rand.Next(0, 4);
 
             Color RColor = Color.FromArgb(40, 40, 40);
 
@@ -260,10 +258,10 @@ namespace Tetris
             timer1.Dispose();
             GetRandomBlock();
 
-            // RandomBlock = rand.Next(0, 4);
-            RandomBlock = 0;
+            RandomBlock = rand.Next(0, 4);
+            RandomPosition = rand.Next(0, 4);
 
-             RImage = DrawRandomBlock();//
+            RImage = DrawRandomBlock();//
             timer1.Start();
         }
 

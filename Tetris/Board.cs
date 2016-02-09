@@ -38,7 +38,7 @@ namespace Tetris
 
         Block[,] board;
 
-        public Point[] ShiftToLeft(Point[]baseCoordinates)
+        public static Point[] ShiftToLeft(Point[]baseCoordinates)
         {
             Point[] temp = new Point[baseCoordinates.Length];
 
@@ -50,7 +50,7 @@ namespace Tetris
 
         }
 
-        public Point[] ShiftToRight(Point[] baseCoordinates)
+        public static Point[] ShiftToRight(Point[] baseCoordinates)
         {
             Point[] temp = new Point[baseCoordinates.Length];
 
@@ -63,7 +63,7 @@ namespace Tetris
         }
 
 
-        public Point[] ShiftToDown(Point[] baseCoordinates)
+        public static Point[] ShiftToDown(Point[] baseCoordinates)
         {
             Point[] temp = new Point[baseCoordinates.Length];
 

@@ -1,10 +1,15 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
 using System;
+using System.Collections.Generic;
+using System.Collections;
 
 namespace Tetris
 {
-    
+    /*this is a matrix which is devided on blocks, each of 
+    which containes 1 or 0 and color. If we have a blocks on sheet,
+    they are reflect on the board. So it's kind of skeleton of main sheet*/
+
     class Board
     {
         public static event Action ArrivedAtBottom; 
@@ -67,7 +72,29 @@ namespace Tetris
                 }
             }
         }
-        public bool Exists(Point coordinates)
+
+        public bool AskPermission(Point[]CurrentCoordinates,Point[]FutureCoornates)
+        {
+            List<Point> temp = new List<Point>();
+
+            for (int i=0;i<FutureCoornates.Length;i++)
+            {
+                if(Array.IndexOf(CurrentCoordinates, FutureCoornates[i])==-1)
+                {
+                    temp.Add(FutureCoornates[i]);
+                }
+            }
+                foreach (Point Coordinate in temp)
+            {
+                if(CheckExistence(Coordinate)== true)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool CheckExistence(Point coordinates)
         {
             if ((coordinates.X >= 0) && (coordinates.X < board.GetLength(1))
                     && (coordinates.Y >= 0) && (coordinates.Y < board.GetLength(0)))
@@ -83,23 +110,27 @@ namespace Tetris
             }
             else
             {
-                return false;
+                return true;
             }
         }
         public void SetValue(Point[]coordinates,Color color)
         {
-            foreach(Point coordinate in coordinates)
+            bool arrivedAtBottom = false;
+            foreach (Point coordinate in coordinates)
             {
-                if ((coordinate.Y == board.GetLength(0)-1)||(Exists(new Point(coordinate.X,coordinate.Y+1))==true))
+                if ((coordinate.Y == board.GetLength(0)-1)||(CheckExistence(new Point(coordinate.X,coordinate.Y+1))==true))
                 {
                     board[coordinate.Y, coordinate.X] = new Block(true, color);
-                    ArrivedAtBottom();
-                   // break;
+                    arrivedAtBottom = true;
                 }
                 else
                 {
                     board[coordinate.Y, coordinate.X] = new Block(true, color);
                 }
+            }
+            if(arrivedAtBottom==true)
+            {
+                ArrivedAtBottom();
             }
         }
 

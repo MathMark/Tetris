@@ -28,7 +28,8 @@ namespace Tetris
 
             StartPoint = new Point(4 * BlockSize, 0);
 
-            RandomBlock = rand.Next(0, 4);
+            //RandomBlock = rand.Next(0, 4);
+            RandomBlock = 0;
             GetRandomBlock();
             RandomBlock = rand.Next(0, 4);
             RImage = DrawRandomBlock();
@@ -80,7 +81,7 @@ namespace Tetris
             switch (RandomBlock)
             {
                 case 0:
-                    t_block = new T_Block(StartPoint, RandomPosition, BlockSize,board);
+                    t_block = new T_Block(StartPoint, 0, BlockSize,board);
                     moveLeft = t_block.MoveLeft;
                     moveRight = t_block.MoveRight;
                     moveDown = t_block.MoveDown;
@@ -202,6 +203,7 @@ namespace Tetris
             board.RelieveValue(returnCoordinates());
             moveDown();
             board.SetValue(returnCoordinates(), BlockColor);
+
             board.DrawBlocks(Draft, BlockSize);
 
             painter.DrawArea();
@@ -213,12 +215,12 @@ namespace Tetris
         private void Form1_KeyUp(object sender, KeyEventArgs e)
         {
             
-;            switch(e.KeyCode.ToString())
+           switch(e.KeyCode.ToString())
             {
                 case "Left":
                     painter.Clear();
 
-                    board.RelieveValue(returnCoordinates());
+                   board.RelieveValue(returnCoordinates());
 
                     moveLeft();
 
@@ -258,8 +260,10 @@ namespace Tetris
             timer1.Dispose();
             GetRandomBlock();
 
-            RandomBlock = rand.Next(0, 4);
-            RImage = DrawRandomBlock();
+            // RandomBlock = rand.Next(0, 4);
+            RandomBlock = 0;
+
+             RImage = DrawRandomBlock();//
             timer1.Start();
         }
 

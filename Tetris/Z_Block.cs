@@ -152,7 +152,7 @@ namespace Tetris
         }
         public void MoveLeft()
         {
-            if ((BoardLocation.X > 0)&&(board.Exists(new Point(BoardLocation.X-1,BoardLocation.Y)) == false))
+            if ((BoardLocation.X > 0)&&(board.CheckExistence(new Point(BoardLocation.X-1,BoardLocation.Y)) == false))
             {
                 BoardLocation.X --;
                 for (int i = 0; i < baseCoordinates.Length; i++)

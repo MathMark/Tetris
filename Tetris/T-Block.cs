@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Drawing;
-
+using System.Windows.Forms;
 namespace Tetris
 {
     class T_Block:IBlocko,IMove
@@ -20,10 +20,8 @@ namespace Tetris
         int BlockSize;
 
         private Point BoardLocation;
-        private int width;
-        private int height;
 
-        Point[] baseCoordinates = new Point[4]; 
+        Point[] baseCoordinates = new Point[4];
 
         int position;
         public int Position
@@ -45,25 +43,6 @@ namespace Tetris
             }
         }
 
-        private void SetMeasurements()
-        {
-            switch(Position)
-            {
-                case 0:
-                    width = 3;
-                    height = 2;
-                    break;
-                case 1:
-                    width = 2;
-                    height = 3;
-                    break;
-                case 3:
-                    goto case 0;
-                case 4:
-                    goto case 1;
-            }
-        }
-
         Board board;
         public T_Block(Point Location, int position, int BlockSize, Board board)
         {
@@ -75,8 +54,7 @@ namespace Tetris
             this.board = board;
             BoardLocation = new Point(Location.X / BlockSize, Location.Y / BlockSize);
 
-            ChangeCoordinates();
-            SetMeasurements();
+            InitCoordinates();
         }
 
         public T_Block(Bitmap sheet, Point Location, int position, int BlockSize)
@@ -87,8 +65,6 @@ namespace Tetris
 
             painter = Graphics.FromImage(sheet);
             this.Position = position;
-
-            ChangeCoordinates();
         }
 
         private void InitCoordinates()
@@ -98,63 +74,88 @@ namespace Tetris
                 baseCoordinates[i].X = BoardLocation.X;
                 baseCoordinates[i].Y = BoardLocation.Y;
             }
-        }
+
+            switch (Position)
+            {
+                case 0:
+                    baseCoordinates[1].X--;
+
+                    baseCoordinates[2].X++;
+
+                    baseCoordinates[3].Y++;
+
+                    break;
+
+                case 1:
+                    baseCoordinates[1].Y++;
+
+                    baseCoordinates[2].Y--;
+
+                    baseCoordinates[3].X--;
+
+                    break;
+
+
+                case 2:
+                    baseCoordinates[1].X--;
+
+                    baseCoordinates[2].X++;
+
+                    baseCoordinates[3].Y--;
+
+                    break;
+
+                case 3:
+                    baseCoordinates[1].Y++;
+
+                    baseCoordinates[2].Y--;
+
+                    baseCoordinates[3].X++;
+
+                    break;
+            }
+
+
+       }
 
         private void ChangeCoordinates()
         {
             switch (Position)
             {
                 case 0:
-                    InitCoordinates();
-                    SetMeasurements();
+                    baseCoordinates[2].X++;
 
-                    baseCoordinates[1].X++;
-                    baseCoordinates[2].X += 2;
-
-                    baseCoordinates[3].X++;
                     baseCoordinates[3].Y++;
 
                     break;
 
                 case 1:
-                    InitCoordinates();
-                    SetMeasurements();
-
                     baseCoordinates[1].Y++;
-                    baseCoordinates[2].Y += 2;
+
+                    baseCoordinates[2].Y--;
 
                     baseCoordinates[3].X--;
-                    baseCoordinates[3].Y++;
 
                     break;
-            
+
 
                 case 2:
-                    InitCoordinates();
-                    SetMeasurements();
-
                     baseCoordinates[1].X--;
-                    baseCoordinates[1].Y++;
-                    baseCoordinates[2].Y++;
 
-                    baseCoordinates[3].X++;
-                    baseCoordinates[3].Y++;
+                    baseCoordinates[2].X++;
+
+                    baseCoordinates[3].Y--;
 
                     break;
 
                 case 3:
-                    InitCoordinates();
-                    SetMeasurements();
-
                     baseCoordinates[1].Y++;
-                    baseCoordinates[2].Y += 2;
+
+                    baseCoordinates[2].Y--;
 
                     baseCoordinates[3].X++;
-                    baseCoordinates[3].Y++;
 
                     break;
-
-
             }
 
         }
@@ -191,10 +192,47 @@ namespace Tetris
             }
             
         }
+        public Point[]MoveTemporaryToLeft()
+        {
+            Point[] temp = new Point[baseCoordinates.Length];
+
+            for(int i=0;i<temp.Length;i++)
+            {
+                temp[i] = new Point( baseCoordinates[i].X-1,baseCoordinates[i].Y);
+            }
+            return temp;
+
+        }
+
+        public Point[] MoveTemporaryToRight()
+        {
+            Point[] temp = new Point[baseCoordinates.Length];
+
+            for (int i = 0; i < temp.Length; i++)
+            {
+                temp[i] = new Point(baseCoordinates[i].X + 1, baseCoordinates[i].Y);
+            }
+            return temp;
+
+        }
+
+
+        public Point[] MoveTemporaryToDown()
+        {
+            Point[] temp = new Point[baseCoordinates.Length];
+
+            for (int i = 0; i < temp.Length; i++)
+            {
+                temp[i] = new Point(baseCoordinates[i].X, baseCoordinates[i].Y+1);
+            }
+            return temp;
+
+        }
+
 
         public void MoveLeft()
         {
-            if ((BoardLocation.X > 0))
+            if (board.AskPermission(baseCoordinates,MoveTemporaryToLeft())!=true)
             {
                 BoardLocation.X--;
                 for (int i = 0; i < baseCoordinates.Length; i++)
@@ -205,7 +243,7 @@ namespace Tetris
         }
         public void MoveRight()
         {
-            if ((BoardLocation.X+width <= board.CountOfColumns - 1))
+            if (board.AskPermission(baseCoordinates, MoveTemporaryToRight()) != true)
             {
                 BoardLocation.X++;
                 for (int i = 0; i < baseCoordinates.Length; i++)
@@ -216,7 +254,7 @@ namespace Tetris
         }
         public void MoveDown()
         {
-            if (BoardLocation.Y+height <= board.CountOfLines - 1)
+            if (board.AskPermission(baseCoordinates, MoveTemporaryToDown()) != true)
             {
                 BoardLocation.Y++;
                 for (int i = 0; i < baseCoordinates.Length; i++)
@@ -224,7 +262,6 @@ namespace Tetris
                     baseCoordinates[i].Y++;
                 }
             }
-
         }
         public void Rotate()
         {

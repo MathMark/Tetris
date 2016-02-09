@@ -192,47 +192,10 @@ namespace Tetris
             }
             
         }
-        public Point[]MoveTemporaryToLeft()
-        {
-            Point[] temp = new Point[baseCoordinates.Length];
-
-            for(int i=0;i<temp.Length;i++)
-            {
-                temp[i] = new Point( baseCoordinates[i].X-1,baseCoordinates[i].Y);
-            }
-            return temp;
-
-        }
-
-        public Point[] MoveTemporaryToRight()
-        {
-            Point[] temp = new Point[baseCoordinates.Length];
-
-            for (int i = 0; i < temp.Length; i++)
-            {
-                temp[i] = new Point(baseCoordinates[i].X + 1, baseCoordinates[i].Y);
-            }
-            return temp;
-
-        }
-
-
-        public Point[] MoveTemporaryToDown()
-        {
-            Point[] temp = new Point[baseCoordinates.Length];
-
-            for (int i = 0; i < temp.Length; i++)
-            {
-                temp[i] = new Point(baseCoordinates[i].X, baseCoordinates[i].Y+1);
-            }
-            return temp;
-
-        }
-
-
+        
         public void MoveLeft()
         {
-            if (board.AskPermission(baseCoordinates,MoveTemporaryToLeft())!=true)
+            if (board.AskPermission(baseCoordinates,Board.ShiftToLeft(returnCoordinates()))!=true)
             {
                 BoardLocation.X--;
                 for (int i = 0; i < baseCoordinates.Length; i++)
@@ -243,7 +206,7 @@ namespace Tetris
         }
         public void MoveRight()
         {
-            if (board.AskPermission(baseCoordinates, MoveTemporaryToRight()) != true)
+            if (board.AskPermission(baseCoordinates, Board.ShiftToRight(returnCoordinates())) != true)
             {
                 BoardLocation.X++;
                 for (int i = 0; i < baseCoordinates.Length; i++)
@@ -254,7 +217,7 @@ namespace Tetris
         }
         public void MoveDown()
         {
-            if (board.AskPermission(baseCoordinates, MoveTemporaryToDown()) != true)
+            if (board.AskPermission(baseCoordinates, Board.ShiftToDown(returnCoordinates())) != true)
             {
                 BoardLocation.Y++;
                 for (int i = 0; i < baseCoordinates.Length; i++)

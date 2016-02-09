@@ -38,6 +38,46 @@ namespace Tetris
 
         Block[,] board;
 
+        public Point[] ShiftToLeft(Point[]baseCoordinates)
+        {
+            Point[] temp = new Point[baseCoordinates.Length];
+
+            for (int i = 0; i < temp.Length; i++)
+            {
+                temp[i] = new Point(baseCoordinates[i].X - 1, baseCoordinates[i].Y);
+            }
+            return temp;
+
+        }
+
+        public Point[] ShiftToRight(Point[] baseCoordinates)
+        {
+            Point[] temp = new Point[baseCoordinates.Length];
+
+            for (int i = 0; i < temp.Length; i++)
+            {
+                temp[i] = new Point(baseCoordinates[i].X + 1, baseCoordinates[i].Y);
+            }
+            return temp;
+
+        }
+
+
+        public Point[] ShiftToDown(Point[] baseCoordinates)
+        {
+            Point[] temp = new Point[baseCoordinates.Length];
+
+            for (int i = 0; i < temp.Length; i++)
+            {
+                temp[i] = new Point(baseCoordinates[i].X, baseCoordinates[i].Y + 1);
+            }
+            return temp;
+
+        }
+
+
+
+
         public Board(int width,int height)
         {
             board = new Block[width, height];

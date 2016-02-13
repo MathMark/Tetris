@@ -37,7 +37,7 @@ namespace Tetris
 
             block = new Block(RandomBlock, StartPoint,board);
 
-            timer1.Interval = 100;
+            timer1.Interval = 400;
             timer1.Enabled = false;
 
         }
@@ -192,7 +192,7 @@ namespace Tetris
             RandomBlock = rand.Next(0, 4);
             RandomPosition = rand.Next(0, 4);
             //block = new Block(RandomBlock, StartPoint, board);
-            block = new Block(6, StartPoint, board);
+            block = new Block(0, StartPoint, board);
             // RImage = DrawRandomBlock();//
             timer1.Start();
         }

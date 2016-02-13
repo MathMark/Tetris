@@ -189,7 +189,18 @@ namespace Tetris
         }
         public void Rotate()
         {
+            bool[,] temp = new bool[4, 4];
 
+            for(int j=temp.GetLength(1)-1;j>=0;j--)
+            {
+                for(int i=0;i<temp.GetLength(0);i++)
+                {
+                    temp[i, j] = skeleton[temp.GetLength(1) - j - 1, i];
+                }
+            }
+            board.RelieveValue(d, skeleton);
+            skeleton = (bool[,])temp.Clone();
+            board.SetValue(d, skeleton, color);
         }
 
     }

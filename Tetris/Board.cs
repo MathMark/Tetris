@@ -1,19 +1,22 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
 using System;
+using System.Collections.Generic;
+using System.Collections;
 
 namespace Tetris
 {
-    
-    class Board
-    {
-        public static event Action ArrivedAtBottom; 
+    /*this is a matrix which is devided on blocks, each of 
+    which containes 1 or 0 and color. If we have a blocks on sheet,
+    they are reflect on the board. So it's kind of skeleton of main sheet*/
 
-        class Block
+   public class Board
+    {
+        class Blockk
         {
             public bool Existence;
             public Color color;
-            public Block(bool Existence, Color color)
+            public Blockk(bool Existence, Color color)
             {
                 this.Existence = Existence;
                 this.color = color;
@@ -31,31 +34,14 @@ namespace Tetris
             }
         }
 
-        Block[,] board;
+        Blockk[,] board;
+
 
         public Board(int width,int height)
         {
-            board = new Block[width, height];
+            board = new Blockk[width, height];
             Clear();
         }
-
-        public int CountOfLines
-        {
-            get
-            {
-                return board.GetLength(0);
-            }
-           
-        }
-        public int CountOfColumns
-        {
-            get
-            {
-                return board.GetLength(1);
-            }
-            
-        }
-
 
         public void Clear()
         {
@@ -63,16 +49,38 @@ namespace Tetris
             {
                 for(int j=0;j<board.GetLength(1);j++)
                 {
-                    board[i, j] = new Block(false, Color.Empty);
+                    board[i, j] = new Blockk(false, Color.Empty);
                 }
             }
         }
-        public bool Exists(Point coordinates)
+
+        //public bool AskPermission(Point[]CurrentCoordinates,Point[]FutureCoornates)
+        //{
+        //    List<Point> temp = new List<Point>();
+
+        //    for (int i=0;i<FutureCoornates.Length;i++)
+        //    {
+        //        if(Array.IndexOf(CurrentCoordinates, FutureCoornates[i])==-1)
+        //        {
+        //            temp.Add(FutureCoornates[i]);
+        //        }
+        //    }
+        //        foreach (Point Coordinate in temp)
+        //    {
+        //        if(CheckExistence(Coordinate)== true)
+        //        {
+        //            return true;
+        //        }
+        //    }
+        //    return false;
+        //}
+
+        public bool CheckExistence(Point coordinates)
         {
-            if ((coordinates.X >= 0) && (coordinates.X < board.GetLength(1))
-                    && (coordinates.Y >= 0) && (coordinates.Y < board.GetLength(0)))
+            if ((coordinates.X >= 0) && (coordinates.X < board.GetLength(0))
+                    && (coordinates.Y >= 0) && (coordinates.Y < board.GetLength(1)))
             {
-                if (board[coordinates.Y, coordinates.X].Existence == true)
+                if (board[coordinates.X, coordinates.Y].Existence == true)
                 {
                     return true;
                 }
@@ -83,33 +91,37 @@ namespace Tetris
             }
             else
             {
-                return false;
+                return true;
             }
         }
-        public void SetValue(Point[]coordinates,Color color)
+
+        public void SetValue(Point d,bool[,] matrix,Color color)
         {
-            foreach(Point coordinate in coordinates)
+            for(int i=0;i< matrix.GetLength(0);i++)
             {
-                if ((coordinate.Y == board.GetLength(0)-1)||(Exists(new Point(coordinate.X,coordinate.Y+1))==true))
+                for(int j=0;j< matrix.GetLength(1);j++)
                 {
-                    board[coordinate.Y, coordinate.X] = new Block(true, color);
-                    ArrivedAtBottom();
-                   // break;
+                    if(matrix[i,j]==true)
+                    {
+                        board[i + d.Y, j + d.X]=new Blockk(true,color);
+                    }
                 }
-                else
+            }
+        }
+        public void RelieveValue(Point d, bool[,] matrix)
+        {
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < matrix.GetLength(1); j++)
                 {
-                    board[coordinate.Y, coordinate.X] = new Block(true, color);
+                    if (matrix[i, j] == true)
+                    {
+                        board[i + d.Y, j + d.X] = new Blockk(false, Color.Empty);
+                    }
                 }
             }
         }
 
-        public void RelieveValue(Point[] coordinates)
-        {
-            foreach (Point coordinate in coordinates)
-            {
-                board[coordinate.Y, coordinate.X] = new Block(false, Color.Empty);
-            }
-        }
 
         public void DrawBlocks(Bitmap sheet,int BlockSize)
         {

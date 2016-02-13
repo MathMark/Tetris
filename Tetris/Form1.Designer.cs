@@ -55,7 +55,7 @@
             this.RandomBSheet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.RandomBSheet.Location = new System.Drawing.Point(410, 12);
             this.RandomBSheet.Name = "RandomBSheet";
-            this.RandomBSheet.Size = new System.Drawing.Size(206, 274);
+            this.RandomBSheet.Size = new System.Drawing.Size(206, 560);
             this.RandomBSheet.TabIndex = 4;
             this.RandomBSheet.TabStop = false;
             // 

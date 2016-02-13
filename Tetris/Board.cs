@@ -12,8 +12,6 @@ namespace Tetris
 
    public class Board
     {
-        public static event Action ArrivedAtBottom; 
-
         class Blockk
         {
             public bool Existence;
@@ -38,70 +36,12 @@ namespace Tetris
 
         Blockk[,] board;
 
-        public static Point[] ShiftToLeft(Point[]baseCoordinates)
-        {
-            Point[] temp = new Point[baseCoordinates.Length];
-
-            for (int i = 0; i < temp.Length; i++)
-            {
-                temp[i] = new Point(baseCoordinates[i].X - 1, baseCoordinates[i].Y);
-            }
-            return temp;
-
-        }
-
-        public static Point[] ShiftToRight(Point[] baseCoordinates)
-        {
-            Point[] temp = new Point[baseCoordinates.Length];
-
-            for (int i = 0; i < temp.Length; i++)
-            {
-                temp[i] = new Point(baseCoordinates[i].X + 1, baseCoordinates[i].Y);
-            }
-            return temp;
-
-        }
-
-
-        public static Point[] ShiftToDown(Point[] baseCoordinates)
-        {
-            Point[] temp = new Point[baseCoordinates.Length];
-
-            for (int i = 0; i < temp.Length; i++)
-            {
-                temp[i] = new Point(baseCoordinates[i].X, baseCoordinates[i].Y + 1);
-            }
-            return temp;
-
-        }
-
-
-
 
         public Board(int width,int height)
         {
             board = new Blockk[width, height];
-           // MessageBox.Show(width+" "+ height);
             Clear();
         }
-
-        public int CountOfLines
-        {
-            get
-            {
-                return board.GetLength(0);
-            }
-           
-        }
-        public int CountOfColumns
-        {
-            get
-            {
-                return board.GetLength(1);
-            }
-            
-        }
-
 
         public void Clear()
         {
@@ -114,26 +54,26 @@ namespace Tetris
             }
         }
 
-        public bool AskPermission(Point[]CurrentCoordinates,Point[]FutureCoornates)
-        {
-            List<Point> temp = new List<Point>();
+        //public bool AskPermission(Point[]CurrentCoordinates,Point[]FutureCoornates)
+        //{
+        //    List<Point> temp = new List<Point>();
 
-            for (int i=0;i<FutureCoornates.Length;i++)
-            {
-                if(Array.IndexOf(CurrentCoordinates, FutureCoornates[i])==-1)
-                {
-                    temp.Add(FutureCoornates[i]);
-                }
-            }
-                foreach (Point Coordinate in temp)
-            {
-                if(CheckExistence(Coordinate)== true)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
+        //    for (int i=0;i<FutureCoornates.Length;i++)
+        //    {
+        //        if(Array.IndexOf(CurrentCoordinates, FutureCoornates[i])==-1)
+        //        {
+        //            temp.Add(FutureCoornates[i]);
+        //        }
+        //    }
+        //        foreach (Point Coordinate in temp)
+        //    {
+        //        if(CheckExistence(Coordinate)== true)
+        //        {
+        //            return true;
+        //        }
+        //    }
+        //    return false;
+        //}
 
         public bool CheckExistence(Point coordinates)
         {
@@ -152,27 +92,6 @@ namespace Tetris
             else
             {
                 return true;
-            }
-        }
-        public void SetValue(Point[]coordinates,Color color)
-        {
-            bool arrivedAtBottom = false;
-            foreach (Point coordinate in coordinates)
-            {
-                if ((coordinate.Y == board.GetLength(0) - 1) || (CheckExistence(new Point(coordinate.X, coordinate.Y + 1)) != false))
-                {
-                    board[coordinate.Y, coordinate.X] = new Blockk(true, color);
-                    arrivedAtBottom = true;
-                }
-                else
-                {
-                    board[coordinate.Y, coordinate.X] = new Blockk(true, color);
-                }
-            }
-            if (arrivedAtBottom == true)
-            {
-                arrivedAtBottom = false;
-                ArrivedAtBottom();
             }
         }
 
@@ -203,13 +122,6 @@ namespace Tetris
             }
         }
 
-        public void RelieveValue(Point[] coordinates)
-        {
-            foreach (Point coordinate in coordinates)
-            {
-                board[coordinate.Y, coordinate.X] = new Blockk(false, Color.Empty);
-            }
-        }
 
         public void DrawBlocks(Bitmap sheet,int BlockSize)
         {

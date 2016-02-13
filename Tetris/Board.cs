@@ -10,15 +10,15 @@ namespace Tetris
     which containes 1 or 0 and color. If we have a blocks on sheet,
     they are reflect on the board. So it's kind of skeleton of main sheet*/
 
-    class Board
+   public class Board
     {
         public static event Action ArrivedAtBottom; 
 
-        class Block
+        class Blockk
         {
             public bool Existence;
             public Color color;
-            public Block(bool Existence, Color color)
+            public Blockk(bool Existence, Color color)
             {
                 this.Existence = Existence;
                 this.color = color;
@@ -36,7 +36,7 @@ namespace Tetris
             }
         }
 
-        Block[,] board;
+        Blockk[,] board;
 
         public static Point[] ShiftToLeft(Point[]baseCoordinates)
         {
@@ -80,7 +80,8 @@ namespace Tetris
 
         public Board(int width,int height)
         {
-            board = new Block[width, height];
+            board = new Blockk[width, height];
+           // MessageBox.Show(width+" "+ height);
             Clear();
         }
 
@@ -108,7 +109,7 @@ namespace Tetris
             {
                 for(int j=0;j<board.GetLength(1);j++)
                 {
-                    board[i, j] = new Block(false, Color.Empty);
+                    board[i, j] = new Blockk(false, Color.Empty);
                 }
             }
         }
@@ -136,10 +137,10 @@ namespace Tetris
 
         public bool CheckExistence(Point coordinates)
         {
-            if ((coordinates.X >= 0) && (coordinates.X < board.GetLength(1))
-                    && (coordinates.Y >= 0) && (coordinates.Y < board.GetLength(0)))
+            if ((coordinates.X >= 0) && (coordinates.X < board.GetLength(0))
+                    && (coordinates.Y >= 0) && (coordinates.Y < board.GetLength(1)))
             {
-                if (board[coordinates.Y, coordinates.X].Existence == true)
+                if (board[coordinates.X, coordinates.Y].Existence == true)
                 {
                     return true;
                 }
@@ -158,19 +159,47 @@ namespace Tetris
             bool arrivedAtBottom = false;
             foreach (Point coordinate in coordinates)
             {
-                if ((coordinate.Y == board.GetLength(0)-1)||(CheckExistence(new Point(coordinate.X,coordinate.Y+1))==true))
+                if ((coordinate.Y == board.GetLength(0) - 1) || (CheckExistence(new Point(coordinate.X, coordinate.Y + 1)) != false))
                 {
-                    board[coordinate.Y, coordinate.X] = new Block(true, color);
+                    board[coordinate.Y, coordinate.X] = new Blockk(true, color);
                     arrivedAtBottom = true;
                 }
                 else
                 {
-                    board[coordinate.Y, coordinate.X] = new Block(true, color);
+                    board[coordinate.Y, coordinate.X] = new Blockk(true, color);
                 }
             }
-            if(arrivedAtBottom==true)
+            if (arrivedAtBottom == true)
             {
+                arrivedAtBottom = false;
                 ArrivedAtBottom();
+            }
+        }
+
+        public void SetValue(Point d,bool[,] matrix,Color color)
+        {
+            for(int i=0;i< matrix.GetLength(0);i++)
+            {
+                for(int j=0;j< matrix.GetLength(1);j++)
+                {
+                    if(matrix[i,j]==true)
+                    {
+                        board[i + d.Y, j + d.X]=new Blockk(true,color);
+                    }
+                }
+            }
+        }
+        public void RelieveValue(Point d, bool[,] matrix)
+        {
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    if (matrix[i, j] == true)
+                    {
+                        board[i + d.Y, j + d.X] = new Blockk(false, Color.Empty);
+                    }
+                }
             }
         }
 
@@ -178,7 +207,7 @@ namespace Tetris
         {
             foreach (Point coordinate in coordinates)
             {
-                board[coordinate.Y, coordinate.X] = new Block(false, Color.Empty);
+                board[coordinate.Y, coordinate.X] = new Blockk(false, Color.Empty);
             }
         }
 

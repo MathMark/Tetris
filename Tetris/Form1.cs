@@ -13,7 +13,7 @@ namespace Tetris
     }
     public partial class Form1 : Form,IMainForm
     {
-
+        Block block;
         public Form1()
         {
             InitializeComponent();
@@ -26,20 +26,18 @@ namespace Tetris
 
             board = new Board(Sheet.Height / BlockSize, Sheet.Width / BlockSize);
 
-            StartPoint = new Point(4 * BlockSize, 0);
+            StartPoint = new Point(0, 0);
+
+            RandomBlock = rand.Next(0, 6);
 
             RandomBlock = rand.Next(0, 4);
-            RandomPosition = rand.Next(0, 4);
-            // RandomBlock = 3;
-            GetRandomBlock();
-            RandomBlock = rand.Next(0, 4);
-            RImage = DrawRandomBlock();
+           // RImage = DrawRandomBlock();
 
-            Board.ArrivedAtBottom += Board_ArrivedAtBottom;
+            Block.ArrivedAtBottom += Board_ArrivedAtBottom;
 
+            block = new Block(RandomBlock, StartPoint,board);
 
-
-            timer1.Interval = 700;
+            timer1.Interval = 100;
             timer1.Enabled = false;
 
         }
@@ -49,22 +47,11 @@ namespace Tetris
 
         Bitmap Draft;
 
-        T_Block t_block;
-        Square square;
-        Stick stick;
-        Z_Block z_block;
-
         Painter painter;
         Board board;
 
-        ReturnCoordinates returnCoordinates;
-        MoveLeft moveLeft;
-        MoveRight moveRight;
-        MoveDown moveDown;
-        Rotate rotate;
-
         static int BlockSize;
-        static Color BlockColor;
+
         Point[] TempCoordinates = new Point[4];
 
         Random rand = new Random();
@@ -76,95 +63,42 @@ namespace Tetris
 
         #region methods
 
-        void GetRandomBlock()
-        {
-            switch (RandomBlock)
-            {
-                case 0:
-                    t_block = new T_Block(StartPoint, 0, BlockSize,board);
-                    moveLeft = t_block.MoveLeft;
-                    moveRight = t_block.MoveRight;
-                    moveDown = t_block.MoveDown;
-                    rotate = t_block.Rotate;
 
-                    BlockColor = t_block.color;
-                    returnCoordinates = t_block.returnCoordinates;
+        //Bitmap DrawRandomBlock()
+        //{
+        //    Bitmap RandomDraft = new Bitmap(RandomBSheet.Width, RandomBSheet.Height);
+        //    Painter @Painter = new Painter(RandomDraft, BlockSize, RandomDraft.Width, RandomDraft.Height);
 
-                    break;
-                case 1:
-                    square = new Square(StartPoint, BlockSize,board);
-                    moveLeft = square.MoveLeft;
-                    moveRight = square.MoveRight;
-                    moveDown = square.MoveDown;
-                    rotate = square.Rotate;
+        //    Color RColor = Color.FromArgb(40, 40, 40);
 
-                    BlockColor = square.color;
-                    returnCoordinates = square.returnCoordinates;
+        //    Point Position = new Point(2 * BlockSize, 2 * BlockSize);
 
-                    break;
-                case 2:
-                    stick = new Stick(StartPoint, RandomPosition, BlockSize,board);
-                    moveLeft = stick.MoveLeft;
-                    moveRight = stick.MoveRight;
-                    moveDown = stick.MoveDown;
-                    rotate = stick.Rotate;
-
-                    BlockColor = stick.color;
-                    returnCoordinates = stick.returnCoordinates;
-
-                    break;
-                case 3:
-                    z_block = new Z_Block(StartPoint, RandomPosition, BlockSize,board);
-                    moveLeft = z_block.MoveLeft;
-                    moveRight = z_block.MoveRight;
-                    moveDown = z_block.MoveDown;
-                    rotate = z_block.Rotate;
-
-                    BlockColor = z_block.color;
-                    returnCoordinates = z_block.returnCoordinates;
-                    break;
-                //
-                default:
-                    break;
-
-            }
-        }
-
-        Bitmap DrawRandomBlock()
-        {
-            Bitmap RandomDraft = new Bitmap(RandomBSheet.Width, RandomBSheet.Height);
-            Painter @Painter = new Painter(RandomDraft, BlockSize, RandomDraft.Width, RandomDraft.Height);
-
-            Color RColor = Color.FromArgb(40, 40, 40);
-
-            Point Position = new Point(2 * BlockSize, 2 * BlockSize);
-
-            switch(RandomBlock)
-            {
-                case 0:
-                    t_block = new T_Block(RandomDraft, Position, RandomPosition, BlockSize);
-                    t_block.Draw();
-                    @Painter.DrawArea(RColor);
-                    return RandomDraft;
-                case 1:
-                    square = new Square(RandomDraft, Position, BlockSize);
-                    square.Draw();
-                    @Painter.DrawArea(RColor);
-                    return RandomDraft;
-                case 2:
-                    stick = new Stick(RandomDraft, Position, RandomPosition, BlockSize);
-                    stick.Draw();
-                    @Painter.DrawArea(RColor);
-                    return RandomDraft;
-                case 3:
-                    z_block = new Z_Block(RandomDraft, Position, RandomPosition, BlockSize);
-                    z_block.Draw();
-                    @Painter.DrawArea(RColor);
-                    return RandomDraft;
-                default:
-                    return RandomDraft;
-            }
-        }
+            //switch(RandomBlock)
+            //{
+                //case 0:
+                //    t_block = new T_Block(RandomDraft, Position, RandomPosition, BlockSize);
+                //    t_block.Draw();
+                //    @Painter.DrawArea(RColor);
+                //    return RandomDraft;
+                //case 1:
+                //    square = new Square(RandomDraft, Position, BlockSize);
+                //    square.Draw();
+                //    @Painter.DrawArea(RColor);
+                //    return RandomDraft;
+                //case 2:
+                //    stick = new Stick(RandomDraft, Position, RandomPosition, BlockSize);
+                //    stick.Draw();
+                //    @Painter.DrawArea(RColor);
+                //    return RandomDraft;
+                //case 3:
+                //    z_block = new Z_Block(RandomDraft, Position, RandomPosition, BlockSize);
+                //    z_block.Draw();
+                //    @Painter.DrawArea(RColor);
+                //    return RandomDraft;
+                //default:
+                //    return RandomDraft;
+           // }
+       // }
 
         public Bitmap Image
         {
@@ -198,9 +132,10 @@ namespace Tetris
         {
             painter.Clear();
 
-            board.RelieveValue(returnCoordinates());
-            moveDown();
-            board.SetValue(returnCoordinates(), BlockColor);
+            //board.RelieveValue(returnCoordinates());
+            //moveDown();
+            block.MoveToDown();
+           // board.SetValue(block);
 
             board.DrawBlocks(Draft, BlockSize);
 
@@ -218,11 +153,8 @@ namespace Tetris
                 case "Left":
                     painter.Clear();
 
-                   board.RelieveValue(returnCoordinates());
+                    block.MoveToLeft();
 
-                    moveLeft();
-
-                    board.SetValue(returnCoordinates(), BlockColor);
                     board.DrawBlocks(Draft, BlockSize);
 
                     painter.DrawArea();
@@ -232,23 +164,22 @@ namespace Tetris
                 case "Right":
                     painter.Clear();
 
-                    board.RelieveValue(returnCoordinates());
-                    moveRight();
-                    board.SetValue(returnCoordinates(), BlockColor);
+                    block.MoveToRight();
                     board.DrawBlocks(Draft, BlockSize);
 
                     painter.DrawArea();
                     Image = Draft;
                     break;
-                //case "Up":
-                //    rotater();
-                //    painter.Clear();
+                case "Up":
+                    painter.Clear();
 
-                //    blockPainter();
+                    block.Rotate();
 
-                //    painter.DrawArea();
-                //    Image = Draft;
-                //    break;
+                    board.DrawBlocks(Draft, BlockSize);
+
+                    painter.DrawArea();
+                    Image = Draft;
+                    break;
             }
         }
 
@@ -256,12 +187,13 @@ namespace Tetris
         {
             timer1.Stop();
             timer1.Dispose();
-            GetRandomBlock();
+            //GetRandomBlock();
 
             RandomBlock = rand.Next(0, 4);
             RandomPosition = rand.Next(0, 4);
-
-            RImage = DrawRandomBlock();//
+            //block = new Block(RandomBlock, StartPoint, board);
+            block = new Block(6, StartPoint, board);
+            // RImage = DrawRandomBlock();//
             timer1.Start();
         }
 

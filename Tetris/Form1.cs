@@ -28,13 +28,13 @@ namespace Tetris
             PainterForNextBlock = new Painter(DraftForNextBlock, BlockSize);
 
 
-            board = new Board(Sheet.Height / BlockSize, Sheet.Width / BlockSize);
+            board = new Board(4,Sheet.Height / BlockSize, Sheet.Width / BlockSize);
             BoardForNextBlock = new Board(RandomBSheet.Height / BlockSize, RandomBSheet.Width / BlockSize);
 
 
             Block.ArrivedAtBottom += Board_ArrivedAtBottom;
 
-            StartPoint = new Point(2, -1);
+            StartPoint = new Point(2, 0);
             RandomBlock = rand.Next(0, 7);
 
             blocks = Enumerable.Range(0, 7).ToArray();

@@ -16,6 +16,8 @@ namespace Tetris
         {
             public bool Existence;
             public Color color;
+            
+
             public Blockk(bool Existence, Color color)
             {
                 this.Existence = Existence;
@@ -35,11 +37,18 @@ namespace Tetris
         }
 
         Blockk[,] board;
-
+        int offset;
 
         public Board(int width,int height)
         {
-            board = new Blockk[width, height];
+            board = new Blockk[width+offset, height];
+            offset = 0;
+            Clear();
+        }
+        public Board(int offset,int width, int height)
+        {
+            this.offset = offset;
+            board = new Blockk[width + 4, height];
             Clear();
         }
 
@@ -133,7 +142,7 @@ namespace Tetris
                 {
                     if(board[i,j].Existence==true)
                     {
-                        P.FillRectangle(new SolidBrush(board[i, j].color), new Rectangle(new Point(j*BlockSize,i*BlockSize), new Size(BlockSize, BlockSize)));
+                        P.FillRectangle(new SolidBrush(board[i, j].color), new Rectangle(new Point(j*BlockSize,i*BlockSize-offset*BlockSize), new Size(BlockSize, BlockSize)));
                     }
                 }
             }

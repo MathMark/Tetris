@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Tetris
 {
@@ -26,16 +28,16 @@ namespace Tetris
 
             board = new Board(Sheet.Height / BlockSize, Sheet.Width / BlockSize);
 
-            StartPoint = new Point(0, 0);
-
-            RandomBlock = rand.Next(0, 6);
-
-            RandomBlock = rand.Next(0, 4);
-           // RImage = DrawRandomBlock();
+            
 
             Block.ArrivedAtBottom += Board_ArrivedAtBottom;
 
-            block = new Block(RandomBlock, StartPoint,board);
+            StartPoint = new Point(0, 0);
+            RandomBlock = rand.Next(0, 7);
+            blocks = Enumerable.Range(0, 7).ToArray();
+            Shuffle();
+            block = new Block(blocks[RandomBlock], StartPoint,board);
+            
 
             timer1.Interval = 400;
             timer1.Enabled = false;
@@ -56,14 +58,42 @@ namespace Tetris
 
         Random rand = new Random();
         Point StartPoint;
-        int RandomPosition;
 
+        static int[] blocks;
         #endregion
 
 
         #region methods
 
-
+        //void InitializeBlock()
+        //{
+        //    try
+        //    {
+        //        //blocks[RandomBlock] += blocks[blocks[RandomBlock]];
+        //        //blocks[blocks[RandomBlock]] = blocks[RandomBlock] - blocks[blocks[RandomBlock]];
+        //        //blocks[RandomBlock] -= blocks[blocks[RandomBlock]];
+        //        int temp = blocks[RandomBlock];
+        //        blocks[RandomBlock] = blocks[blocks[RandomBlock]];
+        //        blocks[blocks[RandomBlock]] = temp;
+        //    }
+        //    catch
+        //    {
+        //        MessageBox.Show(RandomBlock+" "+blocks[RandomBlock]);
+        //    }
+        //}
+        public static void Shuffle()
+        {
+            Random rng = new Random();
+            int n = blocks.Length;
+            while (n > 1)
+            {
+                n--;
+                int k = rng.Next(n + 1);
+                int value = blocks[k];
+                blocks[k] = blocks[n];
+                blocks[n] = value;
+            }
+        }
         //Bitmap DrawRandomBlock()
         //{
         //    Bitmap RandomDraft = new Bitmap(RandomBSheet.Width, RandomBSheet.Height);
@@ -73,32 +103,32 @@ namespace Tetris
 
         //    Point Position = new Point(2 * BlockSize, 2 * BlockSize);
 
-            //switch(RandomBlock)
-            //{
-                //case 0:
-                //    t_block = new T_Block(RandomDraft, Position, RandomPosition, BlockSize);
-                //    t_block.Draw();
-                //    @Painter.DrawArea(RColor);
-                //    return RandomDraft;
-                //case 1:
-                //    square = new Square(RandomDraft, Position, BlockSize);
-                //    square.Draw();
-                //    @Painter.DrawArea(RColor);
-                //    return RandomDraft;
-                //case 2:
-                //    stick = new Stick(RandomDraft, Position, RandomPosition, BlockSize);
-                //    stick.Draw();
-                //    @Painter.DrawArea(RColor);
-                //    return RandomDraft;
-                //case 3:
-                //    z_block = new Z_Block(RandomDraft, Position, RandomPosition, BlockSize);
-                //    z_block.Draw();
-                //    @Painter.DrawArea(RColor);
-                //    return RandomDraft;
-                //default:
-                //    return RandomDraft;
-           // }
-       // }
+        //switch(RandomBlock)
+        //{
+        //case 0:
+        //    t_block = new T_Block(RandomDraft, Position, RandomPosition, BlockSize);
+        //    t_block.Draw();
+        //    @Painter.DrawArea(RColor);
+        //    return RandomDraft;
+        //case 1:
+        //    square = new Square(RandomDraft, Position, BlockSize);
+        //    square.Draw();
+        //    @Painter.DrawArea(RColor);
+        //    return RandomDraft;
+        //case 2:
+        //    stick = new Stick(RandomDraft, Position, RandomPosition, BlockSize);
+        //    stick.Draw();
+        //    @Painter.DrawArea(RColor);
+        //    return RandomDraft;
+        //case 3:
+        //    z_block = new Z_Block(RandomDraft, Position, RandomPosition, BlockSize);
+        //    z_block.Draw();
+        //    @Painter.DrawArea(RColor);
+        //    return RandomDraft;
+        //default:
+        //    return RandomDraft;
+        // }
+        // }
 
         public Bitmap Image
         {
@@ -182,18 +212,24 @@ namespace Tetris
                     break;
             }
         }
-
+        int i = 0;
         private void Board_ArrivedAtBottom()
         {
             timer1.Stop();
             timer1.Dispose();
-            //GetRandomBlock();
 
-            RandomBlock = rand.Next(0, 4);
-            RandomPosition = rand.Next(0, 4);
-            //block = new Block(RandomBlock, StartPoint, board);
-            block = new Block(0, StartPoint, board);
-            // RImage = DrawRandomBlock();//
+            if(i==6)
+            {
+                block = new Block(blocks[i], StartPoint, board);
+                Shuffle();
+                i = 0;
+            }
+            else
+            {
+                block = new Block(blocks[i], StartPoint, board);
+                i++;
+            }
+          
             timer1.Start();
         }
 

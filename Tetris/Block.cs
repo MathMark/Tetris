@@ -88,7 +88,7 @@ namespace Tetris
                         { false,true,true,false},
                         { false,false,false,false}
                     };
-                    basecolor = Color.DarkRed;
+                    basecolor = Color.Red;
                     break;
                 case 4://Z-Block
                     skeleton = new bool[4, 4]{
@@ -97,7 +97,7 @@ namespace Tetris
                         { false,false,true,true},
                         { false,false,false,false}
                     };
-                    basecolor = Color.AliceBlue;
+                    basecolor = Color.DarkViolet;
                     break;
                 case 5://L-Block
                     skeleton = new bool[4, 4]{
@@ -106,7 +106,7 @@ namespace Tetris
                         { false,true,false,false},
                         { false,false,false,false}
                     };
-                    basecolor = Color.Crimson;
+                    basecolor = Color.YellowGreen;
                     break;
                 case 6://J-Block
                     skeleton = new bool[4, 4]{
@@ -193,7 +193,7 @@ namespace Tetris
 
             for(int j=temp.GetLength(1)-1;j>=0;j--)
             {
-                for(int i=0;i<temp.GetLength(0);i++)
+                for(int i=0; i<temp.GetLength(0);i++)
                 {
                     temp[i, j] = skeleton[temp.GetLength(1) - j - 1, i];
                 }

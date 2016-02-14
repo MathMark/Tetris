@@ -19,13 +19,13 @@ namespace Tetris
         private int Height;
 
 
-        public Painter(Bitmap Sheet,float BlockSize,int Width,int Height)
+        public Painter(Bitmap Sheet,float BlockSize)
         {
             this.BlockSize = BlockSize;
             color = Color.FromArgb(50, 50, 50);
 
-            this.Width = Width;
-            this.Height = Height;
+            this.Width = Sheet.Width;
+            this.Height = Sheet.Height;
 
             painter = Graphics.FromImage(Sheet);
         }

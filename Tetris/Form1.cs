@@ -16,6 +16,7 @@ namespace Tetris
     public partial class Form1 : Form,IMainForm
     {
         Block block;
+        Block Nextblock;
         public Form1()
         {
             InitializeComponent();
@@ -23,21 +24,29 @@ namespace Tetris
             BlockSize = Sheet.Width / 10;
 
             Draft = new Bitmap(Sheet.Width, Sheet.Height);
-            painter = new Painter(Draft, BlockSize, Sheet.Width, Sheet.Height);
+            DraftForNextBlock = new Bitmap(RandomBSheet.Width, RandomBSheet.Height);
+            painter = new Painter(Draft, BlockSize);
+            PainterForNextBlock = new Painter(DraftForNextBlock, BlockSize);
 
 
             board = new Board(Sheet.Height / BlockSize, Sheet.Width / BlockSize);
+            BoardForNextBlock = new Board(RandomBSheet.Height / BlockSize, RandomBSheet.Width / BlockSize);
 
-            
 
             Block.ArrivedAtBottom += Board_ArrivedAtBottom;
 
             StartPoint = new Point(0, 0);
             RandomBlock = rand.Next(0, 7);
+
             blocks = Enumerable.Range(0, 7).ToArray();
             Shuffle();
+            IndexOfNextBlock = RandomBlock;
+
             block = new Block(blocks[RandomBlock], StartPoint,board);
-            
+            Nextblock = new Block(blocks[IndexOfNextBlock], StartPoint, board);
+
+            IndexOfNextBlock++;
+            ShowNextBlock();
 
             timer1.Interval = 400;
             timer1.Enabled = false;
@@ -48,13 +57,14 @@ namespace Tetris
         int RandomBlock;
 
         Bitmap Draft;
+        Bitmap DraftForNextBlock;
 
         Painter painter;
+        Painter PainterForNextBlock;
         Board board;
+        Board BoardForNextBlock;
 
         static int BlockSize;
-
-        Point[] TempCoordinates = new Point[4];
 
         Random rand = new Random();
         Point StartPoint;
@@ -62,25 +72,42 @@ namespace Tetris
         static int[] blocks;
         #endregion
 
+        int indexOfNextBlock;
+        int IndexOfNextBlock
+        {
+            get
+            {
+                return indexOfNextBlock;
+            }
+            set
+            {
+                if ((value >= 0) && (value < 7))
+                {
+                    indexOfNextBlock = value;
+                }
+                else
+                {
+                    indexOfNextBlock = 0;
+                    Shuffle();
+                }
+            }
+        }
 
         #region methods
 
-        //void InitializeBlock()
-        //{
-        //    try
-        //    {
-        //        //blocks[RandomBlock] += blocks[blocks[RandomBlock]];
-        //        //blocks[blocks[RandomBlock]] = blocks[RandomBlock] - blocks[blocks[RandomBlock]];
-        //        //blocks[RandomBlock] -= blocks[blocks[RandomBlock]];
-        //        int temp = blocks[RandomBlock];
-        //        blocks[RandomBlock] = blocks[blocks[RandomBlock]];
-        //        blocks[blocks[RandomBlock]] = temp;
-        //    }
-        //    catch
-        //    {
-        //        MessageBox.Show(RandomBlock+" "+blocks[RandomBlock]);
-        //    }
-        //}
+        void ShowNextBlock()
+        {
+            Nextblock = new Block(blocks[IndexOfNextBlock], StartPoint, board);
+            BoardForNextBlock.Clear();
+            BoardForNextBlock.SetValue(Nextblock.d, Nextblock.skeleton, Nextblock.color);
+            PainterForNextBlock.Clear();
+            BoardForNextBlock.DrawBlocks(DraftForNextBlock, BlockSize);
+            PainterForNextBlock.DrawArea();
+
+            RImage = DraftForNextBlock;
+        }
+
+
         public static void Shuffle()
         {
             Random rng = new Random();
@@ -212,24 +239,17 @@ namespace Tetris
                     break;
             }
         }
-        int i = 0;
+
         private void Board_ArrivedAtBottom()
         {
             timer1.Stop();
             timer1.Dispose();
 
-            if(i==6)
-            {
-                block = new Block(blocks[i], StartPoint, board);
-                Shuffle();
-                i = 0;
-            }
-            else
-            {
-                block = new Block(blocks[i], StartPoint, board);
-                i++;
-            }
-          
+                block = new Block(blocks[IndexOfNextBlock], StartPoint, board);
+            IndexOfNextBlock++;
+            ShowNextBlock();
+
+
             timer1.Start();
         }
 

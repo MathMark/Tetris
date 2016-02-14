@@ -138,5 +138,10 @@ namespace Tetris
                 }
             }
         }
+
+        public void MoveValues(int IndexLine)
+        {
+
+        }
     }
 }

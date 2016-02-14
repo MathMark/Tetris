@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
-using System.Windows.Forms;
+
 
 namespace Tetris
 {
@@ -97,7 +93,7 @@ namespace Tetris
                         { false,false,true,true},
                         { false,false,false,false}
                     };
-                    basecolor = Color.DarkViolet;
+                    basecolor = Color.MediumPurple;
                     break;
                 case 5://L-Block
                     skeleton = new bool[4, 4]{

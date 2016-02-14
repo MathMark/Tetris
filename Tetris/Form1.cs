@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace Tetris
@@ -35,7 +34,7 @@ namespace Tetris
 
             Block.ArrivedAtBottom += Board_ArrivedAtBottom;
 
-            StartPoint = new Point(0, 0);
+            StartPoint = new Point(2, -1);
             RandomBlock = rand.Next(0, 7);
 
             blocks = Enumerable.Range(0, 7).ToArray();
@@ -43,18 +42,19 @@ namespace Tetris
             IndexOfNextBlock = RandomBlock;
 
             block = new Block(blocks[RandomBlock], StartPoint,board);
-            Nextblock = new Block(blocks[IndexOfNextBlock], StartPoint, board);
+            Nextblock = new Block(blocks[IndexOfNextBlock], PositionOfNextBlock, board);
 
             IndexOfNextBlock++;
             ShowNextBlock();
 
-            timer1.Interval = 400;
-            timer1.Enabled = false;
+            Speed = 400;
+            //timer1.Enabled = false;
 
         }
         #region variables
 
         int RandomBlock;
+        static Point PositionOfNextBlock = new Point(0, 0);
 
         Bitmap Draft;
         Bitmap DraftForNextBlock;
@@ -73,31 +73,13 @@ namespace Tetris
         #endregion
 
         int indexOfNextBlock;
-        int IndexOfNextBlock
-        {
-            get
-            {
-                return indexOfNextBlock;
-            }
-            set
-            {
-                if ((value >= 0) && (value < 7))
-                {
-                    indexOfNextBlock = value;
-                }
-                else
-                {
-                    indexOfNextBlock = 0;
-                    Shuffle();
-                }
-            }
-        }
+        
 
         #region methods
 
         void ShowNextBlock()
         {
-            Nextblock = new Block(blocks[IndexOfNextBlock], StartPoint, board);
+            Nextblock = new Block(blocks[IndexOfNextBlock], PositionOfNextBlock, board);
             BoardForNextBlock.Clear();
             BoardForNextBlock.SetValue(Nextblock.d, Nextblock.skeleton, Nextblock.color);
             PainterForNextBlock.Clear();
@@ -121,41 +103,6 @@ namespace Tetris
                 blocks[n] = value;
             }
         }
-        //Bitmap DrawRandomBlock()
-        //{
-        //    Bitmap RandomDraft = new Bitmap(RandomBSheet.Width, RandomBSheet.Height);
-        //    Painter @Painter = new Painter(RandomDraft, BlockSize, RandomDraft.Width, RandomDraft.Height);
-
-        //    Color RColor = Color.FromArgb(40, 40, 40);
-
-        //    Point Position = new Point(2 * BlockSize, 2 * BlockSize);
-
-        //switch(RandomBlock)
-        //{
-        //case 0:
-        //    t_block = new T_Block(RandomDraft, Position, RandomPosition, BlockSize);
-        //    t_block.Draw();
-        //    @Painter.DrawArea(RColor);
-        //    return RandomDraft;
-        //case 1:
-        //    square = new Square(RandomDraft, Position, BlockSize);
-        //    square.Draw();
-        //    @Painter.DrawArea(RColor);
-        //    return RandomDraft;
-        //case 2:
-        //    stick = new Stick(RandomDraft, Position, RandomPosition, BlockSize);
-        //    stick.Draw();
-        //    @Painter.DrawArea(RColor);
-        //    return RandomDraft;
-        //case 3:
-        //    z_block = new Z_Block(RandomDraft, Position, RandomPosition, BlockSize);
-        //    z_block.Draw();
-        //    @Painter.DrawArea(RColor);
-        //    return RandomDraft;
-        //default:
-        //    return RandomDraft;
-        // }
-        // }
 
         public Bitmap Image
         {
@@ -181,6 +128,46 @@ namespace Tetris
             }
         }
 
+        int IndexOfNextBlock
+        {
+            get
+            {
+                return indexOfNextBlock;
+            }
+            set
+            {
+                if ((value >= 0) && (value < 7))
+                {
+                    indexOfNextBlock = value;
+                }
+                else
+                {
+                    indexOfNextBlock = 0;
+                    Shuffle();
+                }
+            }
+        }
+
+        int Speed
+        {
+            get
+            {
+                return timer1.Interval;
+            }
+            set
+            {
+                if (value == 0)
+                {
+                    timer1.Stop();
+                    timer1.Dispose();
+                }
+                else
+                {
+                    timer1.Interval = value;
+                }
+            }
+        }
+
         #endregion
 
         #region events
@@ -189,10 +176,7 @@ namespace Tetris
         {
             painter.Clear();
 
-            //board.RelieveValue(returnCoordinates());
-            //moveDown();
             block.MoveToDown();
-           // board.SetValue(block);
 
             board.DrawBlocks(Draft, BlockSize);
 
@@ -237,13 +221,15 @@ namespace Tetris
                     painter.DrawArea();
                     Image = Draft;
                     break;
+                case "Down":
+                    Speed = 400;
+                    break;
             }
         }
 
         private void Board_ArrivedAtBottom()
         {
-            timer1.Stop();
-            timer1.Dispose();
+            Speed = 0;
 
                 block = new Block(blocks[IndexOfNextBlock], StartPoint, board);
             IndexOfNextBlock++;
@@ -255,9 +241,21 @@ namespace Tetris
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //painter.Clear();
+            //board.SetValue(block.d, block.skeleton, block.color);
+            //board.DrawBlocks(Draft,BlockSize);
+            //painter.DrawArea();
+            //Image = Draft;
             timer1.Start();
         }
 
         #endregion
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode.ToString()=="Down")
+            Speed = 40;
+        }
+
     }
 }

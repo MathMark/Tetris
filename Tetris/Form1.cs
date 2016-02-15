@@ -51,7 +51,8 @@ namespace Tetris
             IndexOfNextBlock++;
             ShowNextBlock();
 
-            Speed = 400;
+            Level = 1;
+            Speed = speed;
             timer1.Enabled = true;
             
 
@@ -69,14 +70,34 @@ namespace Tetris
 
         private void Board_FullLine(int index)
         {
-            board.MoveValues(index);
             FullLinesCounter = FullLinesCounter + 1;
-            Score = Score + 25;
+            if (FullLinesCounter==10)
+            {
+                Level = 2;
+                speed = 200;
+                accelerate = 5;
+                incrementScore = new Point(25, 35);
+            }
+            if(FullLinesCounter == 20)
+            {
+                Level = 3;
+                speed = 100;
+                accelerate = 1;
+                incrementScore = new Point(35, 100);
+            }
+            Speed = speed;
+  
+            board.MoveValues(index);
+            
+            Score = Score + incrementScore.Y;
             board.DrawBlocks(Draft,BlockSize);
             Image = Draft;
         }
         #region variables
 
+        static int speed=400;
+        static int accelerate=10;
+        static Point incrementScore = new Point(15, 25);
         int RandomBlock;
         static Point PositionOfNextBlock = new Point(0, 0);
 
@@ -207,7 +228,7 @@ namespace Tetris
             }
             set
             {
-                Scorelabel.Text = value + " ";
+                Scorelabel.Text = value.ToString();
             }
         }
 
@@ -219,7 +240,18 @@ namespace Tetris
             }
             set
             {
-                Lineslabel.Text = value+" ";
+                Lineslabel.Text = value.ToString();
+            }
+        }
+        int Level
+        {
+            get
+            {
+                return Convert.ToInt32(Levellabel.Text);
+            }
+            set
+            {
+                Levellabel.Text = value.ToString();
             }
         }
 
@@ -286,7 +318,7 @@ namespace Tetris
                         break;
                     case "Down":
 
-                        Speed = 400;
+                        Speed = speed;
                         break;
                 }
             }
@@ -296,7 +328,7 @@ namespace Tetris
         {
            // Speed = 0;
 
-            Score = Score + 15;
+            Score = Score + incrementScore.X;
             board.CheckFullLines();
 
             block = new Block(blocks[IndexOfNextBlock], StartPoint, board);
@@ -323,7 +355,7 @@ namespace Tetris
         {
             if ((e.KeyCode.ToString() == "Down")&&(Speed!=0))
             {
-                Speed = 10;
+                Speed = accelerate;
             }
         }
 
@@ -335,6 +367,10 @@ namespace Tetris
             board.Clear();
             Score = 0;
             FullLinesCounter = 0;
+            Level = 1;
+            speed = 400;
+            accelerate = 10;
+            incrementScore = new Point(15, 25);
 
             blocks = Enumerable.Range(0, 7).ToArray();
             Shuffle();
@@ -346,7 +382,7 @@ namespace Tetris
             IndexOfNextBlock++;
             ShowNextBlock();
 
-            Speed = 400;
+            Speed = speed;
             timer1.Enabled = true;
         }
     }

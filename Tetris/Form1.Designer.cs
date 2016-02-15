@@ -38,6 +38,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.Lineslabel = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.Levellabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Sheet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RandomBSheet)).BeginInit();
             this.panel1.SuspendLayout();
@@ -70,7 +72,7 @@
             this.RestartButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.RestartButton.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.RestartButton.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.RestartButton.Location = new System.Drawing.Point(59, 18);
+            this.RestartButton.Location = new System.Drawing.Point(472, 554);
             this.RestartButton.Name = "RestartButton";
             this.RestartButton.Size = new System.Drawing.Size(75, 23);
             this.RestartButton.TabIndex = 5;
@@ -82,14 +84,15 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.panel1.Controls.Add(this.Levellabel);
+            this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.Scorelabel);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.Lineslabel);
-            this.panel1.Controls.Add(this.RestartButton);
             this.panel1.Location = new System.Drawing.Point(413, 248);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 153);
+            this.panel1.Size = new System.Drawing.Size(200, 180);
             this.panel1.TabIndex = 6;
             // 
             // Scorelabel
@@ -97,7 +100,7 @@
             this.Scorelabel.AutoSize = true;
             this.Scorelabel.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Scorelabel.ForeColor = System.Drawing.SystemColors.Control;
-            this.Scorelabel.Location = new System.Drawing.Point(120, 120);
+            this.Scorelabel.Location = new System.Drawing.Point(120, 132);
             this.Scorelabel.Name = "Scorelabel";
             this.Scorelabel.Size = new System.Drawing.Size(14, 15);
             this.Scorelabel.TabIndex = 9;
@@ -108,7 +111,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label2.ForeColor = System.Drawing.SystemColors.Control;
-            this.label2.Location = new System.Drawing.Point(39, 120);
+            this.label2.Location = new System.Drawing.Point(39, 132);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(56, 15);
             this.label2.TabIndex = 8;
@@ -119,7 +122,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.ForeColor = System.Drawing.SystemColors.Control;
-            this.label1.Location = new System.Drawing.Point(39, 85);
+            this.label1.Location = new System.Drawing.Point(39, 76);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(56, 15);
             this.label1.TabIndex = 7;
@@ -130,11 +133,33 @@
             this.Lineslabel.AutoSize = true;
             this.Lineslabel.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Lineslabel.ForeColor = System.Drawing.SystemColors.Control;
-            this.Lineslabel.Location = new System.Drawing.Point(120, 85);
+            this.Lineslabel.Location = new System.Drawing.Point(120, 76);
             this.Lineslabel.Name = "Lineslabel";
             this.Lineslabel.Size = new System.Drawing.Size(14, 15);
             this.Lineslabel.TabIndex = 6;
             this.Lineslabel.Text = "0";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.ForeColor = System.Drawing.SystemColors.Control;
+            this.label3.Location = new System.Drawing.Point(39, 23);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(56, 15);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Level: ";
+            // 
+            // Levellabel
+            // 
+            this.Levellabel.AutoSize = true;
+            this.Levellabel.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Levellabel.ForeColor = System.Drawing.SystemColors.Control;
+            this.Levellabel.Location = new System.Drawing.Point(120, 23);
+            this.Levellabel.Name = "Levellabel";
+            this.Levellabel.Size = new System.Drawing.Size(14, 15);
+            this.Levellabel.TabIndex = 11;
+            this.Levellabel.Text = "0";
             // 
             // Form1
             // 
@@ -145,6 +170,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.RandomBSheet);
             this.Controls.Add(this.Sheet);
+            this.Controls.Add(this.RestartButton);
             this.KeyPreview = true;
             this.Name = "Form1";
             this.Text = "Tetris";
@@ -170,6 +196,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label Scorelabel;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label Levellabel;
+        private System.Windows.Forms.Label label3;
     }
 }
 

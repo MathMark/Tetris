@@ -107,6 +107,7 @@ namespace Tetris
             {
                 board[indexOfLine, j] = new Blockk(false, Color.Empty);
             }
+            CheckFullLines();
         }
 
         public Board(int width,int height)

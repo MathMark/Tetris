@@ -20,7 +20,8 @@ namespace Tetris
         {
             InitializeComponent();
 
-            BlockSize = Sheet.Width / 10;
+            //BlockSize = Sheet.Width / 10;
+            BlockSize = 35;
 
             Draft = new Bitmap(Sheet.Width, Sheet.Height);
             DraftForNextBlock = new Bitmap(RandomBSheet.Width, RandomBSheet.Height);
@@ -57,6 +58,7 @@ namespace Tetris
         {
             board.MoveValues(index);
             FullLinesCounter = FullLinesCounter + 1;
+            Score = Score + 25;
             board.DrawBlocks(Draft,BlockSize);
             Image = Draft;
         }
@@ -178,15 +180,27 @@ namespace Tetris
             }
         }
 
+        int Score
+        {
+            get
+            {
+                return Convert.ToInt32(Scorelabel.Text);
+            }
+            set
+            {
+                Scorelabel.Text = value + " ";
+            }
+        }
+
         int FullLinesCounter
         {
             get
             {
-                return Int32.Parse(Lineslabel.Text[7].ToString());
+                return Int32.Parse(Lineslabel.Text);
             }
             set
             {
-                Lineslabel.Text = "Lines: " + value+" ";
+                Lineslabel.Text = value+" ";
             }
         }
 
@@ -259,9 +273,10 @@ namespace Tetris
         private void Board_ArrivedAtBottom()
         {
             Speed = 0;
+            Score = Score + 15;
             board.CheckFullLines();
 
-                block = new Block(blocks[IndexOfNextBlock], StartPoint, board);
+            block = new Block(blocks[IndexOfNextBlock], StartPoint, board);
             IndexOfNextBlock++;
             ShowNextBlock();
 

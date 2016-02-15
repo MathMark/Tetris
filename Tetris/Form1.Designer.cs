@@ -35,6 +35,9 @@
             this.RestartButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.Lineslabel = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.Scorelabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Sheet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RandomBSheet)).BeginInit();
             this.panel1.SuspendLayout();
@@ -45,7 +48,7 @@
             this.Sheet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.Sheet.Location = new System.Drawing.Point(34, 12);
             this.Sheet.Name = "Sheet";
-            this.Sheet.Size = new System.Drawing.Size(350, 560);
+            this.Sheet.Size = new System.Drawing.Size(350, 770);
             this.Sheet.TabIndex = 0;
             this.Sheet.TabStop = false;
             // 
@@ -79,6 +82,9 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.panel1.Controls.Add(this.Scorelabel);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.Lineslabel);
             this.panel1.Controls.Add(this.RestartButton);
             this.panel1.Location = new System.Drawing.Point(413, 248);
@@ -91,18 +97,51 @@
             this.Lineslabel.AutoSize = true;
             this.Lineslabel.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Lineslabel.ForeColor = System.Drawing.SystemColors.Control;
-            this.Lineslabel.Location = new System.Drawing.Point(39, 77);
+            this.Lineslabel.Location = new System.Drawing.Point(120, 85);
             this.Lineslabel.Name = "Lineslabel";
-            this.Lineslabel.Size = new System.Drawing.Size(63, 15);
+            this.Lineslabel.Size = new System.Drawing.Size(14, 15);
             this.Lineslabel.TabIndex = 6;
-            this.Lineslabel.Text = "Lines: 0";
+            this.Lineslabel.Text = "0";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.ForeColor = System.Drawing.SystemColors.Control;
+            this.label1.Location = new System.Drawing.Point(39, 85);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(56, 15);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Lines: ";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.ForeColor = System.Drawing.SystemColors.Control;
+            this.label2.Location = new System.Drawing.Point(39, 120);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(56, 15);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Score: ";
+            // 
+            // Scorelabel
+            // 
+            this.Scorelabel.AutoSize = true;
+            this.Scorelabel.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Scorelabel.ForeColor = System.Drawing.SystemColors.Control;
+            this.Scorelabel.Location = new System.Drawing.Point(120, 120);
+            this.Scorelabel.Name = "Scorelabel";
+            this.Scorelabel.Size = new System.Drawing.Size(14, 15);
+            this.Scorelabel.TabIndex = 9;
+            this.Scorelabel.Text = "0";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.ClientSize = new System.Drawing.Size(642, 603);
+            this.ClientSize = new System.Drawing.Size(646, 797);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.RandomBSheet);
             this.Controls.Add(this.Sheet);
@@ -128,6 +167,9 @@
         private System.Windows.Forms.Button RestartButton;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label Lineslabel;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label Scorelabel;
+        private System.Windows.Forms.Label label2;
     }
 }
 

@@ -10,13 +10,14 @@ namespace Tetris
     which containes 1 or 0 and color. If we have a blocks on sheet,
     they are reflect on the board. So it's kind of skeleton of main sheet*/
 
-   public class Board
+    public class Board
     {
+        public static event Action<int> FullLine;
         class Blockk
         {
             public bool Existence;
             public Color color;
-            
+
 
             public Blockk(bool Existence, Color color)
             {
@@ -39,16 +40,87 @@ namespace Tetris
         Blockk[,] board;
         int offset;
 
+
+        //public int this[int i]
+        //{
+        //    get
+        //    {
+        //        return statusOfLine[i];
+        //    }
+        //    set
+        //    {
+        //        if(value>board.GetLength(1))
+        //        {
+        //            statusOfLine[i] = 0;
+        //            MessageBox.Show(i+"");
+        //        }
+        //        else
+        //        {
+        //            statusOfLine[i] = value;
+        //        }
+        //    }
+        //}
+        public void CheckFullLines()
+        {
+            int counter = 0;
+            for (int i = board.GetLength(0) - 1; i>=offset;i--)
+            {
+                for(int j=0;j<board.GetLength(1);j++)
+                {
+                    if(board[i,j].Existence==true)
+                    {
+                        counter++;
+                    }
+                }
+                if (counter == board.GetLength(1))
+                {
+                    FullLine(i);
+                }
+                counter = 0;
+            }
+        }
+        bool CheckFullLine(int indexOfLine)
+        {
+            for (int j = 0; j < board.GetLength(1); j++)
+            {
+                if (board[indexOfLine, j].Existence == true)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public void MoveValues(int indexOfLine)
+        {
+            Blockk temp;
+            while (CheckFullLine(indexOfLine - 1) != false)
+            {
+                for (int j = 0; j < board.GetLength(1); j++)
+                {
+                    temp = board[indexOfLine, j];
+                    board[indexOfLine, j] = board[indexOfLine - 1, j];
+                }
+                indexOfLine--;
+            }
+            for (int j = 0; j < board.GetLength(1); j++)
+            {
+                board[indexOfLine, j] = new Blockk(false, Color.Empty);
+            }
+        }
+
         public Board(int width,int height)
         {
-            board = new Blockk[width+offset, height];
+            board = new Blockk[width, height];
             offset = 0;
+
             Clear();
         }
         public Board(int offset,int width, int height)
         {
             this.offset = offset;
-            board = new Blockk[width + 4, height];
+            board = new Blockk[width + offset, height];
+
             Clear();
         }
 
@@ -148,9 +220,5 @@ namespace Tetris
             }
         }
 
-        public void MoveValues(int IndexLine)
-        {
-
-        }
     }
 }

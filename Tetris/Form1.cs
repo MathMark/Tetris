@@ -33,6 +33,7 @@ namespace Tetris
 
 
             Block.ArrivedAtBottom += Board_ArrivedAtBottom;
+            Board.FullLine += Board_FullLine;
 
             StartPoint = new Point(2, 0);
             RandomBlock = rand.Next(0, 7);
@@ -50,6 +51,13 @@ namespace Tetris
             Speed = 400;
             //timer1.Enabled = false;
 
+        }
+
+        private void Board_FullLine(int index)
+        {
+            board.MoveValues(index);
+            board.DrawBlocks(Draft,BlockSize);
+            Image = Draft;
         }
         #region variables
 
@@ -87,6 +95,7 @@ namespace Tetris
             PainterForNextBlock.DrawArea();
 
             RImage = DraftForNextBlock;
+            timer1.Start();
         }
 
 
@@ -214,7 +223,14 @@ namespace Tetris
                 case "Up":
                     painter.Clear();
 
-                    block.Rotate();
+                    try
+                    {
+                        block.Rotate();
+                    }
+                    catch
+                    {
+                        ;//
+                    }
 
                     board.DrawBlocks(Draft, BlockSize);
 
@@ -230,6 +246,7 @@ namespace Tetris
         private void Board_ArrivedAtBottom()
         {
             Speed = 0;
+            board.CheckFullLines();
 
                 block = new Block(blocks[IndexOfNextBlock], StartPoint, board);
             IndexOfNextBlock++;
@@ -249,13 +266,15 @@ namespace Tetris
             timer1.Start();
         }
 
-        #endregion
-
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode.ToString()=="Down")
-            Speed = 40;
+            if (e.KeyCode.ToString() == "Down")
+            {
+                Speed = 10;
+            }
         }
+
+        #endregion
 
     }
 }

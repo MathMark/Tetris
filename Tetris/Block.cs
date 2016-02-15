@@ -111,7 +111,7 @@ namespace Tetris
                         { false,false,false,true},
                         { false,false,false,false}
                     };
-                    basecolor = Color.Gray;
+                    basecolor = Color.LightBlue;
                     break;
 
             }

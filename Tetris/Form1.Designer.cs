@@ -32,8 +32,11 @@
             this.Sheet = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.RandomBSheet = new System.Windows.Forms.PictureBox();
+            this.RestartButton = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.Sheet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RandomBSheet)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // Sheet
@@ -59,12 +62,35 @@
             this.RandomBSheet.TabIndex = 4;
             this.RandomBSheet.TabStop = false;
             // 
+            // RestartButton
+            // 
+            this.RestartButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.RestartButton.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.RestartButton.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.RestartButton.Location = new System.Drawing.Point(59, 18);
+            this.RestartButton.Name = "RestartButton";
+            this.RestartButton.Size = new System.Drawing.Size(75, 23);
+            this.RestartButton.TabIndex = 5;
+            this.RestartButton.TabStop = false;
+            this.RestartButton.Text = "Restart";
+            this.RestartButton.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.panel1.Controls.Add(this.RestartButton);
+            this.panel1.Location = new System.Drawing.Point(413, 248);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(200, 100);
+            this.panel1.TabIndex = 6;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.ClientSize = new System.Drawing.Size(642, 603);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.RandomBSheet);
             this.Controls.Add(this.Sheet);
             this.KeyPreview = true;
@@ -75,6 +101,7 @@
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.Sheet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RandomBSheet)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -84,6 +111,8 @@
         private System.Windows.Forms.PictureBox Sheet;
         private System.Windows.Forms.PictureBox RandomBSheet;
         public System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button RestartButton;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

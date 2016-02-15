@@ -77,6 +77,7 @@
             this.RestartButton.TabStop = false;
             this.RestartButton.Text = "Restart";
             this.RestartButton.UseVisualStyleBackColor = true;
+            this.RestartButton.Click += new System.EventHandler(this.RestartButton_Click);
             // 
             // panel1
             // 

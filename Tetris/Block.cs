@@ -204,14 +204,14 @@ namespace Tetris
                         {
                             temp[skeleton.GetLength(1) - 1 - j, i] = true;
                         }
-
                     }
                 }
-            }
 
-            board.RelieveValue(d, skeleton);
-            skeleton = (bool[,])temp.Clone();
-            board.SetValue(d, skeleton, color);
+
+                board.RelieveValue(d, skeleton);
+                skeleton = (bool[,])temp.Clone();
+                board.SetValue(d, skeleton, color);
+            }
         }
 
     }

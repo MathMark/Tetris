@@ -20,6 +20,7 @@ namespace Tetris
         {
             InitializeComponent();
 
+            RestartButton.Enabled = false;
             //BlockSize = Sheet.Width / 10;
             BlockSize = 35;
 
@@ -63,6 +64,7 @@ namespace Tetris
             board.Clear();
             painter.PrintGameOver();
             Image = Draft;
+            RestartButton.Enabled = true;
         }
 
         private void Board_FullLine(int index)
@@ -327,5 +329,25 @@ namespace Tetris
 
         #endregion
 
+        private void RestartButton_Click(object sender, EventArgs e)
+        {
+            RestartButton.Enabled = false;
+            board.Clear();
+            Score = 0;
+            FullLinesCounter = 0;
+
+            blocks = Enumerable.Range(0, 7).ToArray();
+            Shuffle();
+            IndexOfNextBlock = RandomBlock;
+
+            block = new Block(blocks[RandomBlock], StartPoint, board);
+            Nextblock = new Block(blocks[IndexOfNextBlock], PositionOfNextBlock, board);
+
+            IndexOfNextBlock++;
+            ShowNextBlock();
+
+            Speed = 400;
+            timer1.Enabled = true;
+        }
     }
 }

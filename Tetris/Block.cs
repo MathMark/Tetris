@@ -51,21 +51,32 @@ namespace Tetris
             switch(typeBlock)
             {
                 case 0://T-Block
-                    skeleton =new bool[4,4]{
-                        { false,false,false,false},
-                        { false,true,true,true},
-                        { false,false,true,false},
-                        { false,false,false,false}  
-                    };
+                       //skeleton =new bool[4,4]{
+                       //    { false,false,false,false},
+                       //    { false,true,true,true},
+                       //    { false,false,true,false},
+                       //    { false,false,false,false}  
+                       //};
+                       skeleton =new bool[3,3]{
+                           { false,false,false},
+                           { true,true,true},
+                           { false,true,false}, 
+                       };
+
                     basecolor = Color.DodgerBlue;
                     break;
                 case 1://O-Block
-                    skeleton = new bool[4, 4]{
-                        { false,false,false,false},
-                        { false,true,true,false},
-                        { false,true,true,false},
-                        { false,false,false,false}
-                    };
+                    //skeleton = new bool[4, 4]{
+                    //    { false,false,false,false},
+                    //    { false,true,true,false},
+                    //    { false,true,true,false},
+                    //    { false,false,false,false}
+                    //};
+                    skeleton = new bool[3, 3]{
+                           { false,false,false},
+                           { true,true,false},
+                           { true,true,false},
+                       };
                     basecolor = Color.DarkOrange;
                     break;
                 case 2://I-Block
@@ -78,39 +89,59 @@ namespace Tetris
                     basecolor = Color.Yellow;
                     break;
                 case 3://S-Block
-                    skeleton = new bool[4, 4]{
-                        { false,false,false,false},
-                        { false,false,true,true},
-                        { false,true,true,false},
-                        { false,false,false,false}
-                    };
+                    //skeleton = new bool[4, 4]{
+                    //    { false,false,false,false},
+                    //    { false,false,true,true},
+                    //    { false,true,true,false},
+                    //    { false,false,false,false}
+                    //};
+                    skeleton = new bool[3, 3]{
+                           { false,false,false},
+                           { false,true,true},
+                           { true,true,false},
+                       };
                     basecolor = Color.Red;
                     break;
                 case 4://Z-Block
-                    skeleton = new bool[4, 4]{
-                        { false,false,false,false},
-                        { false,true,true,false},
-                        { false,false,true,true},
-                        { false,false,false,false}
-                    };
+                    //skeleton = new bool[4, 4]{
+                    //    { false,false,false,false},
+                    //    { false,true,true,false},
+                    //    { false,false,true,true},
+                    //    { false,false,false,false}
+                    //};
+                    skeleton = new bool[3, 3]{
+                           { false,false,false},
+                           { true,true,false},
+                           { false,true,true},
+                       };
                     basecolor = Color.MediumPurple;
                     break;
                 case 5://L-Block
-                    skeleton = new bool[4, 4]{
-                        { false,false,false,false},
-                        { false,true,true,true},
-                        { false,true,false,false},
-                        { false,false,false,false}
-                    };
+                    //skeleton = new bool[4, 4]{
+                    //    { false,false,false,false},
+                    //    { false,true,true,true},
+                    //    { false,true,false,false},
+                    //    { false,false,false,false}
+                    //};
+                    skeleton = new bool[3, 3]{
+                           { false,false,false},
+                           { true,true,true},
+                           { true,false,false},
+                       };
                     basecolor = Color.YellowGreen;
                     break;
                 case 6://J-Block
-                    skeleton = new bool[4, 4]{
-                        { false,false,false,false},
-                        { false,true,true,true},
-                        { false,false,false,true},
-                        { false,false,false,false}
-                    };
+                    //skeleton = new bool[4, 4]{
+                    //    { false,false,false,false},
+                    //    { false,true,true,true},
+                    //    { false,false,false,true},
+                    //    { false,false,false,false}
+                    //};
+                    skeleton = new bool[3, 3]{
+                           { false,false,false},
+                           { true,true,true},
+                           { false,false,true},
+                       };
                     basecolor = Color.LightBlue;
                     break;
 
@@ -185,15 +216,29 @@ namespace Tetris
         }
         public void Rotate()
         {
-            bool[,] temp = new bool[4, 4];
+            bool[,] temp = new bool[skeleton.GetLength(0), skeleton.GetLength(1)];
 
-            for(int j=temp.GetLength(1)-1;j>=0;j--)
+            //for(int j=temp.GetLength(1)-1;j>=0;j--)
+            //{
+            //    for(int i=0; i<temp.GetLength(0);i++)
+            //    {
+            //        temp[i, j] = skeleton[temp.GetLength(1) - j - 1, i];
+            //    }
+            //}
+            
+
+            for (int i=0;i<skeleton.GetLength(0);i++)
             {
-                for(int i=0; i<temp.GetLength(0);i++)
+                for(int j=0;j<skeleton.GetLength(1);j++)
                 {
-                    temp[i, j] = skeleton[temp.GetLength(1) - j - 1, i];
+                    if (skeleton[i, j] == true)
+                    {
+                        temp[skeleton.GetLength(1)-1 - j, i] = true;
+                    }
+
                 }
             }
+
             board.RelieveValue(d, skeleton);
             skeleton = (bool[,])temp.Clone();
             board.SetValue(d, skeleton, color);

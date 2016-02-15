@@ -56,6 +56,7 @@ namespace Tetris
         private void Board_FullLine(int index)
         {
             board.MoveValues(index);
+            FullLinesCounter = FullLinesCounter + 1;
             board.DrawBlocks(Draft,BlockSize);
             Image = Draft;
         }
@@ -174,6 +175,18 @@ namespace Tetris
                 {
                     timer1.Interval = value;
                 }
+            }
+        }
+
+        int FullLinesCounter
+        {
+            get
+            {
+                return Int32.Parse(Lineslabel.Text[7].ToString());
+            }
+            set
+            {
+                Lineslabel.Text = "Lines: " + value+" ";
             }
         }
 

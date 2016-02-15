@@ -34,6 +34,7 @@
             this.RandomBSheet = new System.Windows.Forms.PictureBox();
             this.RestartButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.Lineslabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Sheet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RandomBSheet)).BeginInit();
             this.panel1.SuspendLayout();
@@ -78,11 +79,23 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.panel1.Controls.Add(this.Lineslabel);
             this.panel1.Controls.Add(this.RestartButton);
             this.panel1.Location = new System.Drawing.Point(413, 248);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 100);
+            this.panel1.Size = new System.Drawing.Size(200, 153);
             this.panel1.TabIndex = 6;
+            // 
+            // Lineslabel
+            // 
+            this.Lineslabel.AutoSize = true;
+            this.Lineslabel.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Lineslabel.ForeColor = System.Drawing.SystemColors.Control;
+            this.Lineslabel.Location = new System.Drawing.Point(39, 77);
+            this.Lineslabel.Name = "Lineslabel";
+            this.Lineslabel.Size = new System.Drawing.Size(63, 15);
+            this.Lineslabel.TabIndex = 6;
+            this.Lineslabel.Text = "Lines: 0";
             // 
             // Form1
             // 
@@ -102,6 +115,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.Sheet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RandomBSheet)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -113,6 +127,7 @@
         public System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button RestartButton;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label Lineslabel;
     }
 }
 

@@ -50,6 +50,10 @@ namespace Tetris
                 painter.DrawLine(pen, i, 0, i, Height);
             }
         }
+        public void PrintGameOver()
+        {
+            painter.DrawString("GAME OVER", new Font("Consolas", 16), new SolidBrush(Color.Gold), new Point(Width/2-50, Height/2));
+        }
 
     }
 }

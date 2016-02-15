@@ -35,6 +35,7 @@ namespace Tetris
 
             Block.ArrivedAtBottom += Board_ArrivedAtBottom;
             Board.FullLine += Board_FullLine;
+            Block.GameOver += Block_GameOver;
 
             StartPoint = new Point(2, 0);
             RandomBlock = rand.Next(0, 7);
@@ -50,8 +51,18 @@ namespace Tetris
             ShowNextBlock();
 
             Speed = 400;
-            //timer1.Enabled = false;
+            timer1.Enabled = true;
+            
 
+        }
+
+        private void Block_GameOver()
+        {
+            Speed = 0;
+           // painter.Clear();
+            board.Clear();
+            painter.PrintGameOver();
+            Image = Draft;
         }
 
         private void Board_FullLine(int index)
@@ -84,7 +95,6 @@ namespace Tetris
         #endregion
 
         int indexOfNextBlock;
-        
 
         #region methods
 
@@ -98,7 +108,7 @@ namespace Tetris
             PainterForNextBlock.DrawArea();
 
             RImage = DraftForNextBlock;
-            timer1.Start();
+           // timer1.Start();
         }
 
 
@@ -164,18 +174,25 @@ namespace Tetris
         {
             get
             {
+                if(timer1.Enabled==false)
+                {
+                    return 0;
+                }
                 return timer1.Interval;
             }
             set
             {
                 if (value == 0)
                 {
-                    timer1.Stop();
-                    timer1.Dispose();
+                    if (timer1.Enabled != false)
+                    timer1.Enabled = false;
                 }
                 else
                 {
+                    if (timer1.Enabled != false)
+                        timer1.Enabled = false;
                     timer1.Interval = value;
+                    timer1.Enabled = true;
                 }
             }
         }
@@ -224,55 +241,59 @@ namespace Tetris
 
         private void Form1_KeyUp(object sender, KeyEventArgs e)
         {
-            
-           switch(e.KeyCode.ToString())
+            if (Speed != 0)
             {
-                case "Left":
-                    painter.Clear();
+                switch (e.KeyCode.ToString())
+                {
+                    case "Left":
+                        painter.Clear();
 
-                    block.MoveToLeft();
+                        block.MoveToLeft();
 
-                    board.DrawBlocks(Draft, BlockSize);
+                        board.DrawBlocks(Draft, BlockSize);
 
-                    painter.DrawArea();
-                    Image = Draft;
-                    break;
+                        painter.DrawArea();
+                        Image = Draft;
+                        break;
 
-                case "Right":
-                    painter.Clear();
+                    case "Right":
+                        painter.Clear();
 
-                    block.MoveToRight();
-                    board.DrawBlocks(Draft, BlockSize);
+                        block.MoveToRight();
+                        board.DrawBlocks(Draft, BlockSize);
 
-                    painter.DrawArea();
-                    Image = Draft;
-                    break;
-                case "Up":
-                    painter.Clear();
+                        painter.DrawArea();
+                        Image = Draft;
+                        break;
+                    case "Up":
+                        painter.Clear();
 
-                    try
-                    {
-                        block.Rotate();
-                    }
-                    catch
-                    {
-                        ;//
-                    }
+                        try
+                        {
+                            block.Rotate();
+                        }
+                        catch
+                        {
+                            ;//
+                        }
 
-                    board.DrawBlocks(Draft, BlockSize);
+                        board.DrawBlocks(Draft, BlockSize);
 
-                    painter.DrawArea();
-                    Image = Draft;
-                    break;
-                case "Down":
-                    Speed = 400;
-                    break;
+                        painter.DrawArea();
+                        Image = Draft;
+                        break;
+                    case "Down":
+
+                        Speed = 400;
+                        break;
+                }
             }
         }
 
         private void Board_ArrivedAtBottom()
         {
-            Speed = 0;
+           // Speed = 0;
+
             Score = Score + 15;
             board.CheckFullLines();
 
@@ -281,7 +302,9 @@ namespace Tetris
             ShowNextBlock();
 
 
-            timer1.Start();
+            // timer1.Start();
+           // Speed = 400;
+            //timer1.Enabled = true;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -291,12 +314,12 @@ namespace Tetris
             //board.DrawBlocks(Draft,BlockSize);
             //painter.DrawArea();
             //Image = Draft;
-            timer1.Start();
+           // timer1.Start();
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode.ToString() == "Down")
+            if ((e.KeyCode.ToString() == "Down")&&(Speed!=0))
             {
                 Speed = 10;
             }

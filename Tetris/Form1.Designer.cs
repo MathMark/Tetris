@@ -34,10 +34,10 @@
             this.RandomBSheet = new System.Windows.Forms.PictureBox();
             this.RestartButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.Lineslabel = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.Scorelabel = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.Lineslabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Sheet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RandomBSheet)).BeginInit();
             this.panel1.SuspendLayout();
@@ -54,7 +54,6 @@
             // 
             // timer1
             // 
-            this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // RandomBSheet
@@ -92,27 +91,16 @@
             this.panel1.Size = new System.Drawing.Size(200, 153);
             this.panel1.TabIndex = 6;
             // 
-            // Lineslabel
+            // Scorelabel
             // 
-            this.Lineslabel.AutoSize = true;
-            this.Lineslabel.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Lineslabel.ForeColor = System.Drawing.SystemColors.Control;
-            this.Lineslabel.Location = new System.Drawing.Point(120, 85);
-            this.Lineslabel.Name = "Lineslabel";
-            this.Lineslabel.Size = new System.Drawing.Size(14, 15);
-            this.Lineslabel.TabIndex = 6;
-            this.Lineslabel.Text = "0";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.ForeColor = System.Drawing.SystemColors.Control;
-            this.label1.Location = new System.Drawing.Point(39, 85);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 15);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Lines: ";
+            this.Scorelabel.AutoSize = true;
+            this.Scorelabel.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Scorelabel.ForeColor = System.Drawing.SystemColors.Control;
+            this.Scorelabel.Location = new System.Drawing.Point(120, 120);
+            this.Scorelabel.Name = "Scorelabel";
+            this.Scorelabel.Size = new System.Drawing.Size(14, 15);
+            this.Scorelabel.TabIndex = 9;
+            this.Scorelabel.Text = "0";
             // 
             // label2
             // 
@@ -125,16 +113,27 @@
             this.label2.TabIndex = 8;
             this.label2.Text = "Score: ";
             // 
-            // Scorelabel
+            // label1
             // 
-            this.Scorelabel.AutoSize = true;
-            this.Scorelabel.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Scorelabel.ForeColor = System.Drawing.SystemColors.Control;
-            this.Scorelabel.Location = new System.Drawing.Point(120, 120);
-            this.Scorelabel.Name = "Scorelabel";
-            this.Scorelabel.Size = new System.Drawing.Size(14, 15);
-            this.Scorelabel.TabIndex = 9;
-            this.Scorelabel.Text = "0";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.ForeColor = System.Drawing.SystemColors.Control;
+            this.label1.Location = new System.Drawing.Point(39, 85);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(56, 15);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Lines: ";
+            // 
+            // Lineslabel
+            // 
+            this.Lineslabel.AutoSize = true;
+            this.Lineslabel.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Lineslabel.ForeColor = System.Drawing.SystemColors.Control;
+            this.Lineslabel.Location = new System.Drawing.Point(120, 85);
+            this.Lineslabel.Name = "Lineslabel";
+            this.Lineslabel.Size = new System.Drawing.Size(14, 15);
+            this.Lineslabel.TabIndex = 6;
+            this.Lineslabel.Text = "0";
             // 
             // Form1
             // 

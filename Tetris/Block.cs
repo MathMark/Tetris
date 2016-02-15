@@ -7,6 +7,7 @@ namespace Tetris
     public class Block:IMove
     {
         public static event Action ArrivedAtBottom;
+        public static event Action GameOver;
 
         int typeBlock;
         public Point d;
@@ -46,7 +47,7 @@ namespace Tetris
         {
             this.board = board;
             this.d = Location;
-
+           
             this.TypeBlock = TypeBlock;
             switch(typeBlock)
             {
@@ -116,6 +117,11 @@ namespace Tetris
                     break;
 
             }
+            if (board.CheckExistence(new Point(d.Y + skeleton.GetLength(0), d.X)) == true)
+            {
+                GameOver();
+            }
+
         }
         public void MoveToLeft()
         {
@@ -187,17 +193,19 @@ namespace Tetris
         public void Rotate()
         {
             bool[,] temp = new bool[skeleton.GetLength(0), skeleton.GetLength(1)];
-            
 
-            for (int i=0;i<skeleton.GetLength(0);i++)
+            if (TypeBlock != 1)
             {
-                for(int j=0;j<skeleton.GetLength(1);j++)
+                for (int i = 0; i < skeleton.GetLength(0); i++)
                 {
-                    if (skeleton[i, j] == true)
+                    for (int j = 0; j < skeleton.GetLength(1); j++)
                     {
-                        temp[skeleton.GetLength(1)-1 - j, i] = true;
-                    }
+                        if (skeleton[i, j] == true)
+                        {
+                            temp[skeleton.GetLength(1) - 1 - j, i] = true;
+                        }
 
+                    }
                 }
             }
 

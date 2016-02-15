@@ -16,6 +16,6 @@ All these pieces built-in prorgam, each of which has his own color.
 | Button | Function |
 |-----------------------------------------|---------------------|
 | &uarr;|Rotates piece|
-|&darr;|Shiftes piece|
+|&darr;|Shiftes piece to down faster|
 |&larr;|Moves piece to left|
 |&rarr;|Moves piece to right|

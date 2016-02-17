@@ -95,8 +95,10 @@ namespace Tetris
             board.DrawBlocks(Draft,BlockSize);
             Image = Draft;
         }
+
         #region variables
 
+        private const int DefaultSpeed = 400;
         static int speed=400;
         static int accelerate=10;
         static Point incrementScore = new Point(15, 25);
@@ -289,57 +291,12 @@ namespace Tetris
 
         private void Form1_KeyUp(object sender, KeyEventArgs e)
         {
-            if (Speed != 0)
-            {
-               // MessageBox.Show(e.KeyCode.ToString());
-                switch (e.KeyCode.ToString())
-                {
-                    case "Left":
-                        painter.Clear();
-
-                        block.MoveToLeft();
-
-                        board.DrawBlocks(Draft, BlockSize);
-
-                        painter.DrawArea();
-                        Image = Draft;
-                        break;
-
-                    case "Right":
-                        painter.Clear();
-
-                        block.MoveToRight();
-                        board.DrawBlocks(Draft, BlockSize);
-
-                        painter.DrawArea();
-                        Image = Draft;
-                        break;
-                    case "Up":
-                        painter.Clear();
-
-                        try
-                        {
-                            block.Rotate();
-                        }
-                        catch
-                        {
-                            ;//
-                        }
-
-                        board.DrawBlocks(Draft, BlockSize);
-
-                        painter.DrawArea();
-                        Image = Draft;
-                        break;
-                    case "Down":
-
-                        Speed = speed;
-                        break;
-                    
-                }
-            }
+            
             switch(e.KeyCode.ToString())
             {
+                case "Down":
+                    Speed = DefaultSpeed;
+                    break;
                 case "R"://Restart
 
                     if (Score > TheBestResult)
@@ -399,22 +356,63 @@ namespace Tetris
             IndexOfNextBlock++;
             ShowNextBlock();
 
-
+            Speed = DefaultSpeed;
             // timer1.Start();
-           // Speed = 400;
+            // Speed = 400;
             //timer1.Enabled = true;
         }
-
-
+        
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            if ((e.KeyCode.ToString() == "Down")&&(Speed!=0))
+            if (Speed != 0)
             {
-                Speed = accelerate;
+                // MessageBox.Show(e.KeyCode.ToString());
+                switch (e.KeyCode.ToString())
+                {
+                    case "Left":
+                        painter.Clear();
+
+                        block.MoveToLeft();
+
+                        board.DrawBlocks(Draft, BlockSize);
+
+                        painter.DrawArea();
+                        Image = Draft;
+                        break;
+
+                    case "Right":
+                        painter.Clear();
+
+                        block.MoveToRight();
+                        board.DrawBlocks(Draft, BlockSize);
+
+                        painter.DrawArea();
+                        Image = Draft;
+                        break;
+                    case "Up":
+                        painter.Clear();
+
+                        try
+                        {
+                            block.Rotate();
+                        }
+                        catch
+                        {
+                            ;//
+                        }
+
+                        board.DrawBlocks(Draft, BlockSize);
+
+                        painter.DrawArea();
+                        Image = Draft;
+                        break;
+                    case "Down":
+                        Speed = accelerate;
+                        break;
+                }
             }
         }
 
         #endregion
-
     }
 }

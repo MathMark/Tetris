@@ -41,6 +41,8 @@
             this.SheetforText = new System.Windows.Forms.PictureBox();
             this.RandomBSheet = new System.Windows.Forms.PictureBox();
             this.Sheet = new System.Windows.Forms.PictureBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.BestResultlabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SheetforText)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RandomBSheet)).BeginInit();
@@ -54,6 +56,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.panel1.Controls.Add(this.BestResultlabel);
+            this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.Levellabel);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.Scorelabel);
@@ -62,7 +66,7 @@
             this.panel1.Controls.Add(this.Lineslabel);
             this.panel1.Location = new System.Drawing.Point(422, 266);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 180);
+            this.panel1.Size = new System.Drawing.Size(200, 211);
             this.panel1.TabIndex = 6;
             // 
             // Levellabel
@@ -160,6 +164,27 @@
             this.Sheet.TabIndex = 0;
             this.Sheet.TabStop = false;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.ForeColor = System.Drawing.Color.Gold;
+            this.label4.Location = new System.Drawing.Point(8, 176);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(126, 15);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "The best result: ";
+            // 
+            // BestResultlabel
+            // 
+            this.BestResultlabel.AutoSize = true;
+            this.BestResultlabel.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.BestResultlabel.ForeColor = System.Drawing.Color.Gold;
+            this.BestResultlabel.Location = new System.Drawing.Point(140, 176);
+            this.BestResultlabel.Name = "BestResultlabel";
+            this.BestResultlabel.Size = new System.Drawing.Size(0, 15);
+            this.BestResultlabel.TabIndex = 13;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -197,6 +222,8 @@
         private System.Windows.Forms.Label Levellabel;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox SheetforText;
+        private System.Windows.Forms.Label BestResultlabel;
+        private System.Windows.Forms.Label label4;
     }
 }
 

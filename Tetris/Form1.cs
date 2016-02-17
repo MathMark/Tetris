@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using System.Linq;
+using Tetris.Properties;
 
 namespace Tetris
 {
@@ -21,6 +22,8 @@ namespace Tetris
             InitializeComponent();
 
             BlockSize = 35;//1 cm
+
+            TheBestResult = (int)Settings.Default["TheBestResult"];
 
             Draft = new Bitmap(Sheet.Width, Sheet.Height);
             DraftForNextBlock = new Bitmap(RandomBSheet.Width, RandomBSheet.Height);
@@ -231,6 +234,18 @@ namespace Tetris
             }
         }
 
+        int TheBestResult
+        {
+            get
+            {
+                return Convert.ToInt32(BestResultlabel.Text);
+            }
+            set
+            {
+                BestResultlabel.Text = value.ToString();
+            }
+        }
+
         int FullLinesCounter
         {
             get
@@ -327,6 +342,11 @@ namespace Tetris
             {
                 case "R"://Restart
 
+                    if (Score > TheBestResult)
+                    {
+                        Settings.Default["TheBestResult"] = Score;
+                        Settings.Default.Save();
+                    }
                     board.Clear();
                     Score = 0;
                     FullLinesCounter = 0;
@@ -334,6 +354,7 @@ namespace Tetris
                     speed = 400;
                     accelerate = 10;
                     incrementScore = new Point(15, 25);
+                    TheBestResult = (int)Settings.Default["TheBestResult"];
 
                     blocks = Enumerable.Range(0, 7).ToArray();
                     Shuffle();
@@ -358,6 +379,11 @@ namespace Tetris
                     {
                         Speed = speed;
                     }
+                    break;
+                case "C":
+                    Settings.Default["TheBestResult"] = 0;
+                    Settings.Default.Save();
+                    TheBestResult = 0;
                     break;
             }
         }

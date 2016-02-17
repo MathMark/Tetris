@@ -20,8 +20,7 @@ namespace Tetris
         {
             InitializeComponent();
 
-            //BlockSize = Sheet.Width / 10;
-            BlockSize = 35;
+            BlockSize = 35;//1 cm
 
             Draft = new Bitmap(Sheet.Width, Sheet.Height);
             DraftForNextBlock = new Bitmap(RandomBSheet.Width, RandomBSheet.Height);
@@ -37,7 +36,7 @@ namespace Tetris
             Board.FullLine += Board_FullLine;
             Block.GameOver += Block_GameOver;
 
-            StartPoint = new Point(2, 0);
+            StartPoint = new Point(3, 0);
             RandomBlock = rand.Next(0, 7);
 
             blocks = Enumerable.Range(0, 7).ToArray();
@@ -321,30 +320,45 @@ namespace Tetris
 
                         Speed = speed;
                         break;
-                    case "R"://Restart
-
-                        board.Clear();
-                        Score = 0;
-                        FullLinesCounter = 0;
-                        Level = 1;
-                        speed = 400;
-                        accelerate = 10;
-                        incrementScore = new Point(15, 25);
-
-                        blocks = Enumerable.Range(0, 7).ToArray();
-                        Shuffle();
-                        IndexOfNextBlock = RandomBlock;
-
-                        block = new Block(blocks[RandomBlock], StartPoint, board);
-                        Nextblock = new Block(blocks[IndexOfNextBlock], PositionOfNextBlock, board);
-
-                        IndexOfNextBlock++;
-                        ShowNextBlock();
-
-                        Speed = speed;
-                        timer1.Enabled = true;
-                        break;
+                    
                 }
+            }
+            switch(e.KeyCode.ToString())
+            {
+                case "R"://Restart
+
+                    board.Clear();
+                    Score = 0;
+                    FullLinesCounter = 0;
+                    Level = 1;
+                    speed = 400;
+                    accelerate = 10;
+                    incrementScore = new Point(15, 25);
+
+                    blocks = Enumerable.Range(0, 7).ToArray();
+                    Shuffle();
+                    IndexOfNextBlock = RandomBlock;
+
+                    block = new Block(blocks[RandomBlock], StartPoint, board);
+                    Nextblock = new Block(blocks[IndexOfNextBlock], PositionOfNextBlock, board);
+
+                    IndexOfNextBlock++;
+                    ShowNextBlock();
+
+                    Speed = speed;
+                    timer1.Enabled = true;
+                    break;
+
+                case "P":
+                    if(Speed!=0)
+                    {
+                        Speed = 0;
+                    }
+                    else
+                    {
+                        Speed = speed;
+                    }
+                    break;
             }
         }
 
@@ -365,15 +379,6 @@ namespace Tetris
             //timer1.Enabled = true;
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            //painter.Clear();
-            //board.SetValue(block.d, block.skeleton, block.color);
-            //board.DrawBlocks(Draft,BlockSize);
-            //painter.DrawArea();
-            //Image = Draft;
-           // timer1.Start();
-        }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
@@ -385,9 +390,5 @@ namespace Tetris
 
         #endregion
 
-        private void RestartButton_Click(object sender, EventArgs e)
-        {
-           
-        }
     }
 }

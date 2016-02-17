@@ -20,7 +20,6 @@ namespace Tetris
         {
             InitializeComponent();
 
-            RestartButton.Enabled = false;
             //BlockSize = Sheet.Width / 10;
             BlockSize = 35;
 
@@ -57,16 +56,16 @@ namespace Tetris
             
 
         }
-
+      
         private void Block_GameOver()
         {
             Speed = 0;
            // painter.Clear();
             board.Clear();
-            //Painter.Print("GAME OVER",new Point(Sheet.Width/2-50,Sheet.Height/2));
+
+            painter.PrintGameOver();
 
             Image = Draft;
-            RestartButton.Enabled = true;
         }
 
         private void Board_FullLine(int index)
@@ -278,6 +277,7 @@ namespace Tetris
         {
             if (Speed != 0)
             {
+               // MessageBox.Show(e.KeyCode.ToString());
                 switch (e.KeyCode.ToString())
                 {
                     case "Left":
@@ -320,6 +320,29 @@ namespace Tetris
                     case "Down":
 
                         Speed = speed;
+                        break;
+                    case "R"://Restart
+
+                        board.Clear();
+                        Score = 0;
+                        FullLinesCounter = 0;
+                        Level = 1;
+                        speed = 400;
+                        accelerate = 10;
+                        incrementScore = new Point(15, 25);
+
+                        blocks = Enumerable.Range(0, 7).ToArray();
+                        Shuffle();
+                        IndexOfNextBlock = RandomBlock;
+
+                        block = new Block(blocks[RandomBlock], StartPoint, board);
+                        Nextblock = new Block(blocks[IndexOfNextBlock], PositionOfNextBlock, board);
+
+                        IndexOfNextBlock++;
+                        ShowNextBlock();
+
+                        Speed = speed;
+                        timer1.Enabled = true;
                         break;
                 }
             }
@@ -364,27 +387,7 @@ namespace Tetris
 
         private void RestartButton_Click(object sender, EventArgs e)
         {
-            RestartButton.Enabled = false;
-            board.Clear();
-            Score = 0;
-            FullLinesCounter = 0;
-            Level = 1;
-            speed = 400;
-            accelerate = 10;
-            incrementScore = new Point(15, 25);
-
-            blocks = Enumerable.Range(0, 7).ToArray();
-            Shuffle();
-            IndexOfNextBlock = RandomBlock;
-
-            block = new Block(blocks[RandomBlock], StartPoint, board);
-            Nextblock = new Block(blocks[IndexOfNextBlock], PositionOfNextBlock, board);
-
-            IndexOfNextBlock++;
-            ShowNextBlock();
-
-            Speed = speed;
-            timer1.Enabled = true;
+           
         }
     }
 }

@@ -29,10 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.Sheet = new System.Windows.Forms.PictureBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.RandomBSheet = new System.Windows.Forms.PictureBox();
-            this.RestartButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.Levellabel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -41,58 +39,28 @@
             this.label1 = new System.Windows.Forms.Label();
             this.Lineslabel = new System.Windows.Forms.Label();
             this.SheetforText = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.Sheet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RandomBSheet)).BeginInit();
+            this.RandomBSheet = new System.Windows.Forms.PictureBox();
+            this.Sheet = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SheetforText)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RandomBSheet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Sheet)).BeginInit();
             this.SuspendLayout();
-            // 
-            // Sheet
-            // 
-            this.Sheet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.Sheet.Location = new System.Drawing.Point(34, 12);
-            this.Sheet.Name = "Sheet";
-            this.Sheet.Size = new System.Drawing.Size(350, 770);
-            this.Sheet.TabIndex = 0;
-            this.Sheet.TabStop = false;
             // 
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // RandomBSheet
-            // 
-            this.RandomBSheet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.RandomBSheet.Location = new System.Drawing.Point(455, 83);
-            this.RandomBSheet.Name = "RandomBSheet";
-            this.RandomBSheet.Size = new System.Drawing.Size(140, 140);
-            this.RandomBSheet.TabIndex = 4;
-            this.RandomBSheet.TabStop = false;
-            // 
-            // RestartButton
-            // 
-            this.RestartButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.RestartButton.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.RestartButton.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.RestartButton.Location = new System.Drawing.Point(472, 554);
-            this.RestartButton.Name = "RestartButton";
-            this.RestartButton.Size = new System.Drawing.Size(75, 23);
-            this.RestartButton.TabIndex = 5;
-            this.RestartButton.TabStop = false;
-            this.RestartButton.Text = "Restart";
-            this.RestartButton.UseVisualStyleBackColor = true;
-            this.RestartButton.Click += new System.EventHandler(this.RestartButton_Click);
-            // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.panel1.Controls.Add(this.Levellabel);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.Scorelabel);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.Lineslabel);
-            this.panel1.Location = new System.Drawing.Point(413, 248);
+            this.panel1.Location = new System.Drawing.Point(422, 266);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 180);
             this.panel1.TabIndex = 6;
@@ -101,7 +69,7 @@
             // 
             this.Levellabel.AutoSize = true;
             this.Levellabel.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Levellabel.ForeColor = System.Drawing.SystemColors.Control;
+            this.Levellabel.ForeColor = System.Drawing.Color.DodgerBlue;
             this.Levellabel.Location = new System.Drawing.Point(120, 23);
             this.Levellabel.Name = "Levellabel";
             this.Levellabel.Size = new System.Drawing.Size(14, 15);
@@ -123,7 +91,7 @@
             // 
             this.Scorelabel.AutoSize = true;
             this.Scorelabel.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Scorelabel.ForeColor = System.Drawing.SystemColors.Control;
+            this.Scorelabel.ForeColor = System.Drawing.Color.YellowGreen;
             this.Scorelabel.Location = new System.Drawing.Point(120, 132);
             this.Scorelabel.Name = "Scorelabel";
             this.Scorelabel.Size = new System.Drawing.Size(14, 15);
@@ -156,7 +124,7 @@
             // 
             this.Lineslabel.AutoSize = true;
             this.Lineslabel.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Lineslabel.ForeColor = System.Drawing.SystemColors.Control;
+            this.Lineslabel.ForeColor = System.Drawing.Color.MediumPurple;
             this.Lineslabel.Location = new System.Drawing.Point(120, 76);
             this.Lineslabel.Name = "Lineslabel";
             this.Lineslabel.Size = new System.Drawing.Size(14, 15);
@@ -166,11 +134,31 @@
             // SheetforText
             // 
             this.SheetforText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.SheetforText.Location = new System.Drawing.Point(455, 24);
+            this.SheetforText.Image = ((System.Drawing.Image)(resources.GetObject("SheetforText.Image")));
+            this.SheetforText.Location = new System.Drawing.Point(449, 12);
             this.SheetforText.Name = "SheetforText";
-            this.SheetforText.Size = new System.Drawing.Size(140, 53);
+            this.SheetforText.Size = new System.Drawing.Size(140, 72);
+            this.SheetforText.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.SheetforText.TabIndex = 7;
             this.SheetforText.TabStop = false;
+            // 
+            // RandomBSheet
+            // 
+            this.RandomBSheet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.RandomBSheet.Location = new System.Drawing.Point(449, 90);
+            this.RandomBSheet.Name = "RandomBSheet";
+            this.RandomBSheet.Size = new System.Drawing.Size(140, 140);
+            this.RandomBSheet.TabIndex = 4;
+            this.RandomBSheet.TabStop = false;
+            // 
+            // Sheet
+            // 
+            this.Sheet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.Sheet.Location = new System.Drawing.Point(34, 12);
+            this.Sheet.Name = "Sheet";
+            this.Sheet.Size = new System.Drawing.Size(350, 770);
+            this.Sheet.TabIndex = 0;
+            this.Sheet.TabStop = false;
             // 
             // Form1
             // 
@@ -182,18 +170,17 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.RandomBSheet);
             this.Controls.Add(this.Sheet);
-            this.Controls.Add(this.RestartButton);
             this.KeyPreview = true;
             this.Name = "Form1";
             this.Text = "Tetris";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
-            ((System.ComponentModel.ISupportInitialize)(this.Sheet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RandomBSheet)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SheetforText)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RandomBSheet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Sheet)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -203,7 +190,6 @@
         private System.Windows.Forms.PictureBox Sheet;
         private System.Windows.Forms.PictureBox RandomBSheet;
         public System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Button RestartButton;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label Lineslabel;
         private System.Windows.Forms.Label label1;

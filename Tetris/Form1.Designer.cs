@@ -34,15 +34,17 @@
             this.RandomBSheet = new System.Windows.Forms.PictureBox();
             this.RestartButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.Levellabel = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.Scorelabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.Lineslabel = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.Levellabel = new System.Windows.Forms.Label();
+            this.SheetforText = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.Sheet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RandomBSheet)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SheetforText)).BeginInit();
             this.SuspendLayout();
             // 
             // Sheet
@@ -61,7 +63,7 @@
             // RandomBSheet
             // 
             this.RandomBSheet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.RandomBSheet.Location = new System.Drawing.Point(455, 26);
+            this.RandomBSheet.Location = new System.Drawing.Point(455, 83);
             this.RandomBSheet.Name = "RandomBSheet";
             this.RandomBSheet.Size = new System.Drawing.Size(140, 140);
             this.RandomBSheet.TabIndex = 4;
@@ -94,6 +96,28 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 180);
             this.panel1.TabIndex = 6;
+            // 
+            // Levellabel
+            // 
+            this.Levellabel.AutoSize = true;
+            this.Levellabel.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Levellabel.ForeColor = System.Drawing.SystemColors.Control;
+            this.Levellabel.Location = new System.Drawing.Point(120, 23);
+            this.Levellabel.Name = "Levellabel";
+            this.Levellabel.Size = new System.Drawing.Size(14, 15);
+            this.Levellabel.TabIndex = 11;
+            this.Levellabel.Text = "0";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.ForeColor = System.Drawing.SystemColors.Control;
+            this.label3.Location = new System.Drawing.Point(39, 23);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(56, 15);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Level: ";
             // 
             // Scorelabel
             // 
@@ -139,27 +163,14 @@
             this.Lineslabel.TabIndex = 6;
             this.Lineslabel.Text = "0";
             // 
-            // label3
+            // SheetforText
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.ForeColor = System.Drawing.SystemColors.Control;
-            this.label3.Location = new System.Drawing.Point(39, 23);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 15);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Level: ";
-            // 
-            // Levellabel
-            // 
-            this.Levellabel.AutoSize = true;
-            this.Levellabel.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Levellabel.ForeColor = System.Drawing.SystemColors.Control;
-            this.Levellabel.Location = new System.Drawing.Point(120, 23);
-            this.Levellabel.Name = "Levellabel";
-            this.Levellabel.Size = new System.Drawing.Size(14, 15);
-            this.Levellabel.TabIndex = 11;
-            this.Levellabel.Text = "0";
+            this.SheetforText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.SheetforText.Location = new System.Drawing.Point(455, 24);
+            this.SheetforText.Name = "SheetforText";
+            this.SheetforText.Size = new System.Drawing.Size(140, 53);
+            this.SheetforText.TabIndex = 7;
+            this.SheetforText.TabStop = false;
             // 
             // Form1
             // 
@@ -167,6 +178,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.ClientSize = new System.Drawing.Size(646, 797);
+            this.Controls.Add(this.SheetforText);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.RandomBSheet);
             this.Controls.Add(this.Sheet);
@@ -181,6 +193,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.RandomBSheet)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SheetforText)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -198,6 +211,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label Levellabel;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.PictureBox SheetforText;
     }
 }
 

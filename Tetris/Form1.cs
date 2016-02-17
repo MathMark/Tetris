@@ -63,7 +63,8 @@ namespace Tetris
             Speed = 0;
            // painter.Clear();
             board.Clear();
-            painter.PrintGameOver();
+            //Painter.Print("GAME OVER",new Point(Sheet.Width/2-50,Sheet.Height/2));
+
             Image = Draft;
             RestartButton.Enabled = true;
         }

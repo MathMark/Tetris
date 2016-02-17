@@ -1,5 +1,9 @@
 ﻿using System;
 using System.Drawing;
+using System.Linq;
+using System.Data;
+using System.Linq.Expressions;
+
 
 
 namespace Tetris
@@ -200,7 +204,14 @@ namespace Tetris
                 {
                     for (int j = 0; j < skeleton.GetLength(1); j++)
                     {
-                        if (skeleton[i, j] == true)
+                        if(skeleton[i, j]==false)
+                        {
+                            if(board.CheckExistence(new Point(i+d.Y,j+d.X))==true)
+                            {
+                                return;
+                            }
+                        }
+                        else if (skeleton[i, j] == true)
                         {
                             temp[skeleton.GetLength(1) - 1 - j, i] = true;
                         }

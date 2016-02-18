@@ -53,7 +53,7 @@ namespace Tetris
             ShowNextBlock();
 
             Level = 1;
-            Speed = speed;
+            Speed = defaultSpeed;
             timer1.Enabled = true;
             
 
@@ -73,21 +73,21 @@ namespace Tetris
         private void Board_FullLine(int index)
         {
             FullLinesCounter = FullLinesCounter + 1;
-            if (FullLinesCounter==10)
+            if (FullLinesCounter==1)
             {
                 Level = 2;
-                speed = 200;
+                defaultSpeed = 200;
                 accelerate = 5;
                 incrementScore = new Point(25, 35);
             }
             if(FullLinesCounter == 20)
             {
                 Level = 3;
-                speed = 100;
+                defaultSpeed = 100;
                 accelerate = 1;
                 incrementScore = new Point(35, 100);
             }
-            Speed = speed;
+            Speed = defaultSpeed;
   
             board.MoveValues(index);
             
@@ -98,9 +98,8 @@ namespace Tetris
 
         #region variables
 
-        private const int DefaultSpeed = 400;
-        static int speed=400;
-        static int accelerate=10;
+        private static int defaultSpeed=400;
+        private static int accelerate=10;
         static Point incrementScore = new Point(15, 25);
         int RandomBlock;
         static Point PositionOfNextBlock = new Point(0, 0);
@@ -295,7 +294,7 @@ namespace Tetris
             switch(e.KeyCode.ToString())
             {
                 case "Down":
-                    Speed = DefaultSpeed;
+                    Speed = defaultSpeed;
                     break;
                 case "R"://Restart
 
@@ -308,7 +307,7 @@ namespace Tetris
                     Score = 0;
                     FullLinesCounter = 0;
                     Level = 1;
-                    speed = 400;
+                    defaultSpeed = 400;
                     accelerate = 10;
                     incrementScore = new Point(15, 25);
                     TheBestResult = (int)Settings.Default["TheBestResult"];
@@ -323,7 +322,7 @@ namespace Tetris
                     IndexOfNextBlock++;
                     ShowNextBlock();
 
-                    Speed = speed;
+                    Speed = defaultSpeed;
                     timer1.Enabled = true;
                     break;
 
@@ -334,7 +333,7 @@ namespace Tetris
                     }
                     else
                     {
-                        Speed = speed;
+                        Speed = defaultSpeed;
                     }
                     break;
                 case "C":
@@ -356,7 +355,7 @@ namespace Tetris
             IndexOfNextBlock++;
             ShowNextBlock();
 
-            Speed = DefaultSpeed;
+            Speed = defaultSpeed;
             // timer1.Start();
             // Speed = 400;
             //timer1.Enabled = true;

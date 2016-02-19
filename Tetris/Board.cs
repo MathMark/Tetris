@@ -9,10 +9,9 @@ namespace Tetris
     /*this is a matrix which is devided on blocks, each of 
     which containes 1 or 0 and color. If we have a blocks on sheet,
     they are reflect on the board. So it's kind of skeleton of main sheet*/
-
     public class Board
     {
-        public static event Action<int> FullLine;
+        public event Action<int> FullLine;
         class Blockk
         {
             public bool Existence;
@@ -79,7 +78,7 @@ namespace Tetris
                 counter = 0;
             }
         }
-        bool CheckFullLine(int indexOfLine)
+       public bool CheckFullLine(int indexOfLine)
         {
             for (int j = 0; j < board.GetLength(1); j++)
             {

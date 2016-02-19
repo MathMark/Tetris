@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Tetris.Presenter;
 
 namespace Tetris
 {
@@ -16,7 +17,11 @@ namespace Tetris
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+
+            MainWindow mainWindow = new MainWindow();
+            presenter presenter = new presenter(mainWindow);
+            Application.Run(mainWindow);
+           // Application.Run(new MainWindow());
         }
     }
 }

@@ -9,11 +9,10 @@ namespace Tetris
     public class Block:IMove
     {
         public static event Action ArrivedAtBottom;
-        public static event Action GameOver;
+        public static  event Action GameOver;
 
         int typeBlock;
         public Point d;
-
         public int TypeBlock
         {
             get
@@ -32,6 +31,14 @@ namespace Tetris
                 }
             }
         }
+        const int blockSize = 35;
+        public static int BlockSize
+        {
+            get
+            {
+                return blockSize;
+            }
+        }
 
         Board board;
 
@@ -45,6 +52,7 @@ namespace Tetris
         }
         Color basecolor;
         BitArray[,] structure = new BitArray[3,3];
+
         public Block(int TypeBlock,Point Location,Board board)
         {
             this.board = board;
@@ -68,7 +76,7 @@ namespace Tetris
                            { true,true},
                            { true,true}
                        };
-                    basecolor = Color.Chartreuse;
+                    basecolor = Color.DarkOrange;
                     break;
                 case 2://I-Block
                     skeleton = new bool[4, 4]{
@@ -98,7 +106,6 @@ namespace Tetris
                     basecolor = Color.MediumPurple;
                     break;
                 case 5://L-Block
-   
                     skeleton = new bool[3, 3]{
                            { false,false,false},
                            { true,true,true},
@@ -115,7 +122,6 @@ namespace Tetris
                        };
                     basecolor = Color.LightBlue;
                     break;
-
             }
             if (board.CheckExistence(new Point(d.Y + skeleton.GetLength(0), d.X)) == true)
             {

@@ -9,7 +9,7 @@ This is a simple classic tetris, but with color pieces. Classic tetris usually c
 ![pieces](https://pp.vk.me/c628122/v628122649/38c99/6v25JfewLHo.jpg)
 
 
-All these pieces built-in prorgam, each of which has his own color. 
+All these pieces built-in prorgam, each of which has its own color. 
 
 ##Control
 

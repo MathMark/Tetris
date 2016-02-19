@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Drawing;
-using System.Linq;
-using System.Data;
-using System.Linq.Expressions;
+using System.Collections;
 
 
 
@@ -46,7 +44,7 @@ namespace Tetris
             }
         }
         Color basecolor;
-
+        BitArray[,] structure = new BitArray[3,3];
         public Block(int TypeBlock,Point Location,Board board)
         {
             this.board = board;
@@ -56,7 +54,6 @@ namespace Tetris
             switch(typeBlock)
             {
                 case 0://T-Block
-
                        skeleton =new bool[3,3]{
                            { false,false,false},
                            { true,true,true},
@@ -67,12 +64,11 @@ namespace Tetris
                     break;
                 case 1://O-Block
 
-                    skeleton = new bool[3, 3]{
-                           { false,false,false},
-                           { true,true,false},
-                           { true,true,false},
+                    skeleton = new bool[2, 2]{
+                           { true,true},
+                           { true,true}
                        };
-                    basecolor = Color.DarkOrange;
+                    basecolor = Color.Chartreuse;
                     break;
                 case 2://I-Block
                     skeleton = new bool[4, 4]{

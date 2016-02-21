@@ -31,6 +31,22 @@ namespace Tetris
         public MainWindow()
         {
             InitializeComponent();
+
+            timer1.Tick+=(object sender,EventArgs e)=>
+            {
+                if (TimerTick != null)
+                {
+                    TimerTick(this, EventArgs.Empty);
+                }
+            };
+            KeyDown += (object sender, KeyEventArgs e) =>
+              {
+                  windowKeyDown(this, e);
+              };
+            KeyUp += (object sender, KeyEventArgs e) =>
+              {
+                  windowKeyUp(this, e);
+              };
         }
         public event KeyEventHandler windowKeyDown;
         public event KeyEventHandler windowKeyUp;
@@ -162,26 +178,6 @@ namespace Tetris
             {
                 Levellabel.Text = value.ToString();
             }
-        }
-
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            if(TimerTick!=null)
-            {
-                TimerTick(this, EventArgs.Empty);
-            }
-
-        }
-
-        private void MainWindow_KeyUp(object sender, KeyEventArgs e)
-        {
-            windowKeyUp(this, e);
-        }
-
-        private void MainWindow_KeyDown(object sender, KeyEventArgs e)
-        {
-            windowKeyDown(this, e);
         }
     }
 }

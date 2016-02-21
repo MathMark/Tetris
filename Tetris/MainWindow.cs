@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Linq;
-using Tetris.Properties;
 
 namespace Tetris
 {

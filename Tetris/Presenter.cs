@@ -244,7 +244,7 @@ namespace Tetris.Presenter
         {
             nextblock = new Block(blocks[IndexOfNextBlock], PositionOfNextBlock, board);
             BoardForNextBlock.Clear();
-            BoardForNextBlock.SetValue(nextblock.d, nextblock.skeleton, nextblock.color);
+            BoardForNextBlock.SetValue(nextblock.d, nextblock.skeleton, nextblock.Unit);
             PainterForNextBlock.Clear();
             BoardForNextBlock.DrawBlocks(DraftForNextBlock, BlockSize);
             PainterForNextBlock.DrawArea();

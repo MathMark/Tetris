@@ -1,8 +1,5 @@
 ﻿using System.Drawing;
-using System.Windows.Forms;
 using System;
-using System.Collections.Generic;
-using System.Collections;
 
 namespace Tetris
 {
@@ -15,13 +12,17 @@ namespace Tetris
         class Blockk
         {
             public bool Existence;
-            public Color color;
 
+           public Bitmap unit;
 
-            public Blockk(bool Existence, Color color)
+            public Blockk(bool Existence, Bitmap unit)
             {
                 this.Existence = Existence;
-                this.color = color;
+                this.unit = unit;
+            }
+            public Blockk()
+            {
+                Existence = false;
             }
             public override string ToString()
             {
@@ -38,27 +39,8 @@ namespace Tetris
 
         Blockk[,] board;
         int offset;
+        
 
-
-        //public int this[int i]
-        //{
-        //    get
-        //    {
-        //        return statusOfLine[i];
-        //    }
-        //    set
-        //    {
-        //        if(value>board.GetLength(1))
-        //        {
-        //            statusOfLine[i] = 0;
-        //            MessageBox.Show(i+"");
-        //        }
-        //        else
-        //        {
-        //            statusOfLine[i] = value;
-        //        }
-        //    }
-        //}
         public void CheckFullLines()
         {
             int counter = 0;
@@ -104,7 +86,7 @@ namespace Tetris
             }
             for (int j = 0; j < board.GetLength(1); j++)
             {
-                board[indexOfLine, j] = new Blockk(false, Color.Empty);
+                board[indexOfLine, j] = new Blockk();
             }
             CheckFullLines();
         }
@@ -113,14 +95,12 @@ namespace Tetris
         {
             board = new Blockk[width, height];
             offset = 0;
-
             Clear();
         }
         public Board(int offset,int width, int height)
         {
             this.offset = offset;
             board = new Blockk[width + offset, height];
-
             Clear();
         }
 
@@ -130,31 +110,10 @@ namespace Tetris
             {
                 for(int j=0;j<board.GetLength(1);j++)
                 {
-                    board[i, j] = new Blockk(false, Color.Empty);
+                    board[i, j] = new Blockk();
                 }
             }
         }
-
-        //public bool AskPermission(Point[]CurrentCoordinates,Point[]FutureCoornates)
-        //{
-        //    List<Point> temp = new List<Point>();
-
-        //    for (int i=0;i<FutureCoornates.Length;i++)
-        //    {
-        //        if(Array.IndexOf(CurrentCoordinates, FutureCoornates[i])==-1)
-        //        {
-        //            temp.Add(FutureCoornates[i]);
-        //        }
-        //    }
-        //        foreach (Point Coordinate in temp)
-        //    {
-        //        if(CheckExistence(Coordinate)== true)
-        //        {
-        //            return true;
-        //        }
-        //    }
-        //    return false;
-        //}
 
         public bool CheckExistence(Point coordinates)
         {
@@ -176,7 +135,7 @@ namespace Tetris
             }
         }
 
-        public void SetValue(Point d,bool[,] matrix,Color color)
+        public void SetValue(Point d,bool[,] matrix,Bitmap Unit)
         {
             for(int i=0;i< matrix.GetLength(0);i++)
             {
@@ -184,7 +143,7 @@ namespace Tetris
                 {
                     if(matrix[i,j]==true)
                     {
-                        board[i + d.Y, j + d.X]=new Blockk(true,color);
+                        board[i + d.Y, j + d.X]=new Blockk(true, Unit);
                     }
                 }
             }
@@ -197,7 +156,7 @@ namespace Tetris
                 {
                     if (matrix[i, j] == true)
                     {
-                        board[i + d.Y, j + d.X] = new Blockk(false, Color.Empty);
+                        board[i + d.Y, j + d.X] = new Blockk();
                     }
                 }
             }
@@ -214,7 +173,7 @@ namespace Tetris
                 {
                     if(board[i,j].Existence==true)
                     {
-                        P.FillRectangle(new SolidBrush(board[i, j].color), new Rectangle(new Point(j*BlockSize,i*BlockSize-offset*BlockSize), new Size(BlockSize, BlockSize)));
+                        P.DrawImage(board[i, j].unit, new Point(j * BlockSize, i * BlockSize - offset * BlockSize));
                     }
                 }
             }

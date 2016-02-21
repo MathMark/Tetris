@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Collections;
-
+using Tetris.Properties;
 
 
 namespace Tetris
@@ -43,14 +43,15 @@ namespace Tetris
         Board board;
 
         public bool[,] skeleton;
-        public Color color
+        public Bitmap Unit
         {
             get
             {
-                return basecolor;
+                return unit;
             }
         }
-        Color basecolor;
+        Bitmap unit;
+
         BitArray[,] structure = new BitArray[3,3];
 
         public Block(int TypeBlock,Point Location,Board board)
@@ -68,7 +69,7 @@ namespace Tetris
                            { false,true,false}, 
                        };
 
-                    basecolor = Color.DodgerBlue;
+                    unit = Resources.Blue;
                     break;
                 case 1://O-Block
 
@@ -76,7 +77,7 @@ namespace Tetris
                            { true,true},
                            { true,true}
                        };
-                    basecolor = Color.DarkOrange;
+                    unit = Resources.Orange;
                     break;
                 case 2://I-Block
                     skeleton = new bool[4, 4]{
@@ -85,7 +86,7 @@ namespace Tetris
                         { false,false,false,false},
                         { false,false,false,false}
                     };
-                    basecolor = Color.Yellow;
+                    unit = Resources.Yellow;
                     break;
                 case 3://S-Block
  
@@ -94,16 +95,15 @@ namespace Tetris
                            { false,true,true},
                            { true,true,false},
                        };
-                    basecolor = Color.Red;
+                    unit = Resources.SexyRed;
                     break;
                 case 4://Z-Block
-    
                     skeleton = new bool[3, 3]{
                            { false,false,false},
                            { true,true,false},
                            { false,true,true},
                        };
-                    basecolor = Color.MediumPurple;
+                    unit = Resources.Green;
                     break;
                 case 5://L-Block
                     skeleton = new bool[3, 3]{
@@ -111,7 +111,7 @@ namespace Tetris
                            { true,true,true},
                            { true,false,false},
                        };
-                    basecolor = Color.YellowGreen;
+                    unit = Resources.RelivedBlue;
                     break;
                 case 6://J-Block
 
@@ -120,7 +120,7 @@ namespace Tetris
                            { true,true,true},
                            { false,false,true},
                        };
-                    basecolor = Color.LightBlue;
+                    unit = Resources.Red;
                     break;
             }
             if (board.CheckExistence(new Point(d.Y + skeleton.GetLength(0), d.X)) == true)
@@ -149,7 +149,7 @@ namespace Tetris
             }
             board.RelieveValue(d, skeleton);
             d.X--;
-            board.SetValue(d, skeleton, color);
+            board.SetValue(d, skeleton, Unit);
         }
         public void MoveToRight()
         {
@@ -171,7 +171,7 @@ namespace Tetris
             }
             board.RelieveValue(d, skeleton);
             d.X++;
-            board.SetValue(d, skeleton, color);
+            board.SetValue(d, skeleton, Unit);
         }
         public void MoveToDown()
         {
@@ -194,7 +194,7 @@ namespace Tetris
             }
             board.RelieveValue(d,skeleton);
             d.Y++;
-            board.SetValue(d, skeleton, color);
+            board.SetValue(d, skeleton, Unit);
         }
         public void Rotate()
         {
@@ -223,7 +223,7 @@ namespace Tetris
 
                 board.RelieveValue(d, skeleton);
                 skeleton = (bool[,])temp.Clone();
-                board.SetValue(d, skeleton, color);
+                board.SetValue(d, skeleton, Unit);
             }
         }
 

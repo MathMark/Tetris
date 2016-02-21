@@ -84,9 +84,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\next.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\next1.png" />
   </ItemGroup>
   <ItemGroup>
@@ -102,6 +99,27 @@
     <Folder Include="Model\" />
     <Folder Include="Presenter\" />
     <Folder Include="View\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Orange.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SexyRed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RelivedBlue.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

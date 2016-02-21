@@ -1,6 +1,6 @@
 # Tetris
 
-![Screenshot](https://pp.vk.me/c631716/v631716649/11d7a/1HLjiLNj5vI.jpg)
+![Screenshot](https://pp.vk.me/c631717/v631717649/17153/z4kC_MXYz68.jpg)
 
 ##Description
 

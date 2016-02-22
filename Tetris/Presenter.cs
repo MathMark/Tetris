@@ -50,7 +50,7 @@ namespace Tetris.Presenter
                 else
                 {
                     indexOfNextBlock = 0;
-                    Shuffle();
+                    blocks = Shuffle(blocks);
                 }
             }
         }
@@ -75,7 +75,7 @@ namespace Tetris.Presenter
             RandomBlock = rand.Next(0, 7);
 
             blocks = Enumerable.Range(0, 7).ToArray();
-            Shuffle();
+            blocks = Shuffle(blocks);
             IndexOfNextBlock = RandomBlock;
 
             block = new Block(blocks[RandomBlock], StartPoint, board);
@@ -123,7 +123,7 @@ namespace Tetris.Presenter
                     View.TheBestResult = (int)Settings.Default["TheBestResult"];
 
                     blocks = Enumerable.Range(0, 7).ToArray();
-                    Shuffle();
+                    blocks = Shuffle(blocks);
                     //IndexOfNextBlock = RandomBlock;
 
                     block = new Block(blocks[RandomBlock], StartPoint, board);
@@ -251,18 +251,19 @@ namespace Tetris.Presenter
 
             View.Board = DraftForNextBlock;
         }
-        public static void Shuffle()
+
+        public static int[] Shuffle(int[] blocks)
         {
-            Random rng = new Random();
-            int n = blocks.Length;
-            while (n > 1)
-            {
-                n--;
-                int k = rng.Next(n + 1);
-                int value = blocks[k];
-                blocks[k] = blocks[n];
-                blocks[n] = value;
-            }
+            Random rnd = new Random();
+			for (int i = blocks.Length - 1; i > 1; i--) 
+			{
+				int newIndex = rnd.Next(i + 1);
+                int buffer = blocks[i];
+                blocks[i] = blocks[newIndex];
+                blocks[newIndex] = buffer;
+			}
+
+            return blocks;
         }
     }
 }

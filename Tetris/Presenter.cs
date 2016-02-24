@@ -94,6 +94,8 @@ namespace Tetris.Presenter
             View.windowKeyDown += View_windowKeyDown;
             View.TimerTick += View_TimerTick;
             View.windowKeyUp += View_windowKeyUp;
+
+            View.FullLinesCounter = 0;
         }
 
         private void View_windowKeyUp(object sender, System.Windows.Forms.KeyEventArgs e)

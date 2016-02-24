@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Tetris.Properties;
 
 namespace Tetris
 {
@@ -45,12 +46,14 @@ namespace Tetris
               {
                   windowKeyUp(this, e);
               };
+
+            LinesBoxes = new PictureBox[] { LineBox1,LineBox2};
         }
         public event KeyEventHandler windowKeyDown;
         public event KeyEventHandler windowKeyUp;
         public event EventHandler TimerTick;
 
-
+        PictureBox[] LinesBoxes;
         public Bitmap MainBoard
         {
             get
@@ -154,28 +157,84 @@ namespace Tetris
                 BestResultlabel.Text = value.ToString();
             }
         }
-
+        int lines;
         public int FullLinesCounter
         {
             get
             {
-                return Int32.Parse(Lineslabel.Text);
+                return lines;
             }
             set
             {
-                Lineslabel.Text = value.ToString();
+                string Value = value.ToString();
+                for(int i=0;i<Value.Length;i++)
+                {
+                    switch(Value[i])
+                    {
+                        case '0':
+                            LinesBoxes[i].Image = Resources._0;
+                            break;
+                        case '1':
+                            LinesBoxes[i].Image = Resources._111;
+                            break;
+                        case '2':
+                            LinesBoxes[i].Image = Resources._2;
+                            break;
+                        case '3':
+                            LinesBoxes[i].Image = Resources._3;
+                            break;
+                        case '4':
+                            LinesBoxes[i].Image = Resources._4;
+                            break;
+                        case '5':
+                            LinesBoxes[i].Image = Resources._5;
+                            break;
+                        case '6':
+                            LinesBoxes[i].Image = Resources._6;
+                            break;
+                        case '7':
+                            LinesBoxes[i].Image = Resources._7;
+                            break;
+                        case '8':
+                            LinesBoxes[i].Image = Resources._8;
+                            break;
+                        case '9':
+                            LinesBoxes[i].Image = Resources._9;
+                            break;
+
+                    }
+                }
+                lines = value;
             }
         }
+        int level;
        public int Level
         {
             get
             {
-                return Convert.ToInt32(Levellabel.Text);
+                return level;
             }
             set
             {
-                Levellabel.Text = value.ToString();
+                switch(value)
+                {
+                    case 1:
+                        LevelBox.Image = Resources.Level_1;
+                        break;
+                    case 2:
+                        LevelBox.Image = Resources.Level_2;
+                        break;
+                    case 3:
+                        LevelBox.Image = Resources.Level_3;
+                        break;
+                }
+                level = value;
             }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

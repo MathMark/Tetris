@@ -13,11 +13,13 @@ namespace Tetris
         int Score { get; set; }
         int Speed { get; set; }
         int FullLinesCounter { get; set; }
-        int TheBestResult { get; set; }
+        int TopScore { get; set; }
         int MainBoardWidth { get; }
         int MainBoardHeight { get; }
         int BoardWidth { get; }
         int BoardHeight { get; }
+        void SetNull();
+        void SetTopScoreToNull();
 
 
         event KeyEventHandler windowKeyDown;
@@ -46,13 +48,80 @@ namespace Tetris
             };
 
             LinesBoxes = new PictureBox[] { LineBox1, LineBox2 };
+            ScoreBoxes = new PictureBox[] { ScoreBox1, ScoreBox2, ScoreBox3, ScoreBox4, ScoreBox5, ScoreBox6 };
+            TopScoreBoxes = new PictureBox[] { TopScoreBox1, TopScoreBox2, TopScoreBox3, TopScoreBox4, TopScoreBox5, TopScoreBox6 };
+            SetNull();
         }
 
         public event KeyEventHandler windowKeyDown;
         public event KeyEventHandler windowKeyUp;
         public event EventHandler TimerTick;
 
+        public void SetNull()
+        {
+            for (int i = 1; i < ScoreBoxes.Length; i++)
+            {
+                ScoreBoxes[i].Image = null;
+            }
+            ScoreBox1.Image = Resources._0;
+            LineBox1.Image = Resources._0;
+            LineBox2.Image = null;
+        }
+        public void SetTopScoreToNull()
+        {
+            Settings.Default["TopScore"] = 0;
+            for (int i = 1; i < TopScoreBoxes.Length; i++)
+            {
+                TopScoreBoxes[i].Image = null;
+            }
+            TopScoreBox1.Image = Resources.TopScore_0;
+        }
+
+        public void SetNumbers(string Value, PictureBox[] pictureBoxes)
+        {
+            for (int i = 0; i < Value.Length; i++)
+            {
+                switch (Value[i])
+                {
+                    case '0':
+                        pictureBoxes[i].Image = Resources._0;
+                        break;
+                    case '1':
+                        pictureBoxes[i].Image = Resources._111;
+                        break;
+                    case '2':
+                        pictureBoxes[i].Image = Resources._2;
+                        break;
+                    case '3':
+                        pictureBoxes[i].Image = Resources._3;
+                        break;
+                    case '4':
+                        pictureBoxes[i].Image = Resources._4;
+                        break;
+                    case '5':
+                        pictureBoxes[i].Image = Resources._5;
+                        break;
+                    case '6':
+                        pictureBoxes[i].Image = Resources._6;
+                        break;
+                    case '7':
+                        pictureBoxes[i].Image = Resources._7;
+                        break;
+                    case '8':
+                        pictureBoxes[i].Image = Resources._8;
+                        break;
+                    case '9':
+                        pictureBoxes[i].Image = Resources._9;
+                        break;
+
+                }
+            }
+        }
+
         PictureBox[] LinesBoxes;
+        PictureBox[] ScoreBoxes;
+        PictureBox[] TopScoreBoxes;
+
         public Bitmap MainBoard
         {
             get
@@ -132,28 +201,68 @@ namespace Tetris
                 }
             }
         }
-
+        int score;
         public int Score
         {
             get
             {
-                return Convert.ToInt32(Scorelabel.Text);
+                return score;
             }
             set
             {
-                Scorelabel.Text = value.ToString();
+                //string Value = value.ToString();
+                SetNumbers(value.ToString(), ScoreBoxes);
+                score = value;
             }
         }
 
-        public int TheBestResult
+        public int TopScore
         {
             get
             {
-                return Convert.ToInt32(BestResultlabel.Text);
+                return (int)Settings.Default["TopScore"];
             }
             set
             {
-                BestResultlabel.Text = value.ToString();
+                string Value = value.ToString();
+                for (int i = 0; i < Value.Length; i++)
+                {
+                    switch (Value[i])
+                    {
+                        case '0':
+                            TopScoreBoxes[i].Image = Resources.TopScore_0;
+                            break;
+                        case '1':
+                            TopScoreBoxes[i].Image = Resources.TopScore_1;
+                            break;
+                        case '2':
+                            TopScoreBoxes[i].Image = Resources.TopScore_2;
+                            break;
+                        case '3':
+                            TopScoreBoxes[i].Image = Resources.TopScore_3;
+                            break;
+                        case '4':
+                            TopScoreBoxes[i].Image = Resources.TopScore_4;
+                            break;
+                        case '5':
+                            TopScoreBoxes[i].Image = Resources.TopScore_5;
+                            break;
+                        case '6':
+                            TopScoreBoxes[i].Image = Resources.TopScore_6;
+                            break;
+                        case '7':
+                            TopScoreBoxes[i].Image = Resources.TopScore_7;
+                            break;
+                        case '8':
+                            TopScoreBoxes[i].Image = Resources.TopScore_8;
+                            break;
+                        case '9':
+                            TopScoreBoxes[i].Image = Resources.TopScore_9;
+                            break;
+
+                    }
+                }
+                Settings.Default["TopScore"] = value;
             }
         }
         int lines;
@@ -165,44 +274,7 @@ namespace Tetris
             }
             set
             {
-                string Value = value.ToString();
-                for (int i = 0; i < Value.Length; i++)
-                {
-                    switch (Value[i])
-                    {
-                        case '0':
-                            LinesBoxes[i].Image = Resources._0;
-                            break;
-                        case '1':
-                            LinesBoxes[i].Image = Resources._111;
-                            break;
-                        case '2':
-                            LinesBoxes[i].Image = Resources._2;
-                            break;
-                        case '3':
-                            LinesBoxes[i].Image = Resources._3;
-                            break;
-                        case '4':
-                            LinesBoxes[i].Image = Resources._4;
-                            break;
-                        case '5':
-                            LinesBoxes[i].Image = Resources._5;
-                            break;
-                        case '6':
-                            LinesBoxes[i].Image = Resources._6;
-                            break;
-                        case '7':
-                            LinesBoxes[i].Image = Resources._7;
-                            break;
-                        case '8':
-                            LinesBoxes[i].Image = Resources._8;
-                            break;
-                        case '9':
-                            LinesBoxes[i].Image = Resources._9;
-                            break;
-
-                    }
-                }
+                SetNumbers(value.ToString(), LinesBoxes);
                 lines = value;
             }
         }
@@ -229,6 +301,11 @@ namespace Tetris
                 }
                 level = value;
             }
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

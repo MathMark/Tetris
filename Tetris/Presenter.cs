@@ -60,7 +60,7 @@ namespace Tetris.Presenter
         {
             this.View = View;
             BlockSize = Block.BlockSize;
-            View.TheBestResult = (int)Settings.Default["TheBestResult"];
+            View.TopScore = (int)Settings.Default["TopScore"];
 
             Draft = new Bitmap(View.MainBoardWidth, View.MainBoardHeight);//
             DraftForNextBlock = new Bitmap(View.BoardWidth, View.BoardHeight);
@@ -86,6 +86,7 @@ namespace Tetris.Presenter
 
             View.Level = 1;
             View.Speed = defaultSpeed;
+            View.Score = 0;
             //timer1.Enabled = true;
 
             Block.ArrivedAtBottom += Block_ArrivedAtBottom;
@@ -110,9 +111,9 @@ namespace Tetris.Presenter
                     break;
                 case "R"://Restart
 
-                    if (View.Score > View.TheBestResult)
+                    if (View.Score > View.TopScore)
                     {
-                        Settings.Default["TheBestResult"] = View.Score;
+                        Settings.Default["TopScore"] = View.Score;
                         Settings.Default.Save();
                     }
                     board.Clear();
@@ -122,7 +123,7 @@ namespace Tetris.Presenter
                     defaultSpeed = 400;
                     accelerate = 10;
                     incrementScore = new Point(15, 25);
-                    View.TheBestResult = (int)Settings.Default["TheBestResult"];
+                    View.TopScore = (int)Settings.Default["TopScore"];
 
                     blocks = Enumerable.Range(0, 7).ToArray();
                     blocks = Shuffle(blocks);
@@ -134,6 +135,7 @@ namespace Tetris.Presenter
                     IndexOfNextBlock++;
                     ShowNextBlock();
 
+                    View.SetNull();
                     View.Speed = defaultSpeed;
                     //timer1.Enabled = true;
                     break;
@@ -149,9 +151,10 @@ namespace Tetris.Presenter
                     }
                     break;
                 case "C":
-                    Settings.Default["TheBestResult"] = 0;
+                    View.TopScore = 0;
+                    View.SetTopScoreToNull();
                     Settings.Default.Save();
-                    View.TheBestResult = 0;
+                    View.TopScore = 0;
                     break;
             }
         }

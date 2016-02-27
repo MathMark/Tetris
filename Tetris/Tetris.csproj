@@ -158,6 +158,36 @@
   <ItemGroup>
     <None Include="Resources\Strongblue.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TopScore_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TopScore_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TopScore_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TopScore_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TopScore_4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TopScore_5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TopScore_6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TopScore_7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TopScore_8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TopScore_9.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

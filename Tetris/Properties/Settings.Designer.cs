@@ -25,12 +25,12 @@ namespace Tetris.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public int TheBestResult {
+        public int TopScore {
             get {
-                return ((int)(this["TheBestResult"]));
+                return ((int)(this["TopScore"]));
             }
             set {
-                this["TheBestResult"] = value;
+                this["TopScore"] = value;
             }
         }
     }

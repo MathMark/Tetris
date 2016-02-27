@@ -95,7 +95,7 @@ namespace Tetris
                            { false,true,true},
                            { true,true,false},
                        };
-                    unit = Resources.SexyRed;
+                    unit = Resources.BlueGreen;
                     break;
                 case 4://Z-Block
                     skeleton = new bool[3, 3]{
@@ -103,7 +103,7 @@ namespace Tetris
                            { true,true,false},
                            { false,true,true},
                        };
-                    unit = Resources.Green;
+                    unit = Resources.Gray;
                     break;
                 case 5://L-Block
                     skeleton = new bool[3, 3]{
@@ -111,7 +111,7 @@ namespace Tetris
                            { true,true,true},
                            { true,false,false},
                        };
-                    unit = Resources.RelivedBlue;
+                    unit = Resources.Strongblue;
                     break;
                 case 6://J-Block
 
@@ -120,7 +120,7 @@ namespace Tetris
                            { true,true,true},
                            { false,false,true},
                        };
-                    unit = Resources.Red;
+                    unit = Resources.Purple;
                     break;
             }
             if (board.CheckExistence(new Point(d.Y + skeleton.GetLength(0), d.X)) == true)

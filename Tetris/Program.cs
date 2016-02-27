@@ -15,9 +15,9 @@ namespace Tetris
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            MainWindow mainWindow = new MainWindow();
-            presenter presenter = new presenter(mainWindow);
-            Application.Run(mainWindow);
+            MainForm mainForm = new MainForm();
+            presenter presenter = new presenter(mainForm);
+            Application.Run(mainForm);
            // Application.Run(new MainWindow());
         }
     }

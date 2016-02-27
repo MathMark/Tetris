@@ -1,24 +1,24 @@
 # Tetris
 
-![Screenshot](https://pp.vk.me/c631717/v631717649/17153/z4kC_MXYz68.jpg)
+![Screenshot](https://pp.vk.me/c629630/v629630649/4917/aI8CbuIMh1c.jpg)
 
 ##Description
 
-This is a simple classic tetris, but with color pieces. Classic tetris usually contains 7 pieces:
+This is a simple classic tetris, but with colored pieces. Classic tetris usually contains 7 blocks:
 
 ![pieces](https://pp.vk.me/c628122/v628122649/38c99/6v25JfewLHo.jpg)
 
 
-All these pieces built-in prorgam, each of which has its own color. 
+All these pieces built-in prorgam, each of which has its own color. Color scheme and style was taken from the 80's. 
 
 ##Control
 
 | Button | Function |
 |-----------------------------------------|---------------------|
-| &uarr;|Rotates piece|
-|&darr;|Shiftes piece to down faster|
-|&larr;|Moves piece to left|
-|&rarr;|Moves piece to right|
+| &uarr;|Rotates block|
+|&darr;|Shiftes block to down faster|
+|&larr;|Moves block to left|
+|&rarr;|Moves block to right|
 |P|Set the game on pause|
 |R|Restart the game|
-|C|Reset the best result|
+|C|Reset the top score|

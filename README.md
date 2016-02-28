@@ -15,10 +15,10 @@ All these pieces built-in prorgam, each of which has its own color. Color scheme
 
 | Button | Function |
 |-----------------------------------------|---------------------|
-| &uarr;|Rotates block|
-|&darr;|Shiftes block to down faster|
-|&larr;|Moves block to left|
-|&rarr;|Moves block to right|
+| &uarr;|Rotate block|
+|&darr;|Shifte block to down faster|
+|&larr;|Move block to left|
+|&rarr;|Move block to right|
 |P|Set the game on pause|
 |R|Restart the game|
 |C|Reset the top score|

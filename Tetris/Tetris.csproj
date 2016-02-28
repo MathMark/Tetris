@@ -83,6 +83,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\1.png" />
+    <None Include="Resources\5.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -120,9 +122,6 @@
     <None Include="Resources\4.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\5.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\6.png" />
   </ItemGroup>
   <ItemGroup>
@@ -133,9 +132,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\9.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\111.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Level_1.png" />

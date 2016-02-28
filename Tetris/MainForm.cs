@@ -46,7 +46,7 @@ namespace Tetris
             {
                 windowKeyUp(this, e);
             };
-
+			
             LinesBoxes = new PictureBox[] { LineBox1, LineBox2 };
             ScoreBoxes = new PictureBox[] { ScoreBox1, ScoreBox2, ScoreBox3, ScoreBox4, ScoreBox5, ScoreBox6 };
             TopScoreBoxes = new PictureBox[] { TopScoreBox1, TopScoreBox2, TopScoreBox3, TopScoreBox4, TopScoreBox5, TopScoreBox6 };
@@ -81,40 +81,7 @@ namespace Tetris
         {
             for (int i = 0; i < Value.Length; i++)
             {
-                switch (Value[i])
-                {
-                    case '0':
-                        pictureBoxes[i].Image = Resources._0;
-                        break;
-                    case '1':
-                        pictureBoxes[i].Image = Resources._111;
-                        break;
-                    case '2':
-                        pictureBoxes[i].Image = Resources._2;
-                        break;
-                    case '3':
-                        pictureBoxes[i].Image = Resources._3;
-                        break;
-                    case '4':
-                        pictureBoxes[i].Image = Resources._4;
-                        break;
-                    case '5':
-                        pictureBoxes[i].Image = Resources._5;
-                        break;
-                    case '6':
-                        pictureBoxes[i].Image = Resources._6;
-                        break;
-                    case '7':
-                        pictureBoxes[i].Image = Resources._7;
-                        break;
-                    case '8':
-                        pictureBoxes[i].Image = Resources._8;
-                        break;
-                    case '9':
-                        pictureBoxes[i].Image = Resources._9;
-                        break;
-
-                }
+				pictureBoxes[i].Image = (Bitmap)Tetris.Properties.Resources.ResourceManager.GetObject("_" + Value[i].ToString());
             }
         }
 

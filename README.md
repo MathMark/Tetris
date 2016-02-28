@@ -16,7 +16,7 @@ All these pieces built-in prorgam, each of which has its own color. Color scheme
 | Button | Function |
 |-----------------------------------------|---------------------|
 | &uarr;|Rotate block|
-|&darr;|Shifte block to down faster|
+|&darr;|Shift block to down faster|
 |&larr;|Move block to left|
 |&rarr;|Move block to right|
 |P|Set the game on pause|

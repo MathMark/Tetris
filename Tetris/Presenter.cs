@@ -155,6 +155,8 @@ namespace Tetris.Presenter
                     if (View.Speed != 0)
                     {
                         View.Speed = 0;
+                        Painter.PrintPause();
+                        View.MainBoard = Draft;
                     }
                     else
                     {

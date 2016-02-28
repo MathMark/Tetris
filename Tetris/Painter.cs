@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using Tetris.Properties;
 
 namespace Tetris
 {
@@ -42,6 +43,12 @@ namespace Tetris
         public void PrintGameOver()
         {
             painter.DrawString("GAME OVER", new Font("Consolas", 16, FontStyle.Bold), new SolidBrush(Color.Gold), new Point(Width/2-10,Height/2));
+        }
+        public void PrintPause()
+        {
+           Clear();
+            painter.DrawImage(Resources.Pause2, new Point(0, 0));
+            painter.DrawImage(Resources.Pause, new Point(0, Height - Resources.Pause.Height));
         }
 
     }

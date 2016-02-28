@@ -81,7 +81,7 @@ namespace Tetris
         {
             for (int i = 0; i < Value.Length; i++)
             {
-				pictureBoxes[i].Image = (Bitmap)Tetris.Properties.Resources.ResourceManager.GetObject("_" + Value[i].ToString());
+		pictureBoxes[i].Image = (Bitmap)Tetris.Properties.Resources.ResourceManager.GetObject("_" + Value[i].ToString());
             }
         }
 

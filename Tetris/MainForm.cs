@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using Tetris.Properties;
+using System.Media;
 
 namespace Tetris
 {
@@ -20,12 +21,16 @@ namespace Tetris
         int BoardHeight { get; }
         void SetNull();
         void SetTopScoreToNull();
-
+        bool Up { set; }
+        bool Down { set; }
+        bool Left { set; }
+        bool Right { set; }
 
         event KeyEventHandler windowKeyDown;
         event KeyEventHandler windowKeyUp;
         event EventHandler TimerTick;
     }
+
     public partial class MainForm : Form,IMainWindow
     {
         public MainForm()
@@ -51,6 +56,13 @@ namespace Tetris
             ScoreBoxes = new PictureBox[] { ScoreBox1, ScoreBox2, ScoreBox3, ScoreBox4, ScoreBox5, ScoreBox6 };
             TopScoreBoxes = new PictureBox[] { TopScoreBox1, TopScoreBox2, TopScoreBox3, TopScoreBox4, TopScoreBox5, TopScoreBox6 };
             SetNull();
+
+            Block.GameOver += Block_GameOver;
+
+        }
+        private void Block_GameOver()
+        {
+            Speed=0;
         }
 
         public event KeyEventHandler windowKeyDown;
@@ -81,13 +93,71 @@ namespace Tetris
         {
             for (int i = 0; i < Value.Length; i++)
             {
-		pictureBoxes[i].Image = (Bitmap)Tetris.Properties.Resources.ResourceManager.GetObject("_" + Value[i].ToString());
+                pictureBoxes[i].Image = (Bitmap)Resources.ResourceManager.GetObject("_" + Value[i].ToString());
             }
         }
 
         PictureBox[] LinesBoxes;
         PictureBox[] ScoreBoxes;
         PictureBox[] TopScoreBoxes;
+
+        public bool Up
+        {
+            set
+            {
+                if (value!=false)
+                {
+                    ArrowBox1.Image = Resources.Arrow_UpF;
+                }
+                else
+                {
+                    ArrowBox1.Image = Resources.Arrow_Up;
+                }
+            }
+        }
+        public bool Down
+        {
+            set
+            {
+                if (value != false)
+                {
+                    ArrowBox2.Image = Resources.Arrow_DownF;
+                }
+                else
+                {
+                    ArrowBox2.Image = Resources.Arrow_Down;
+                }
+            }
+        }
+        public bool Left
+        {
+            set
+            {
+                if (value != false)
+                {
+                    ArrowBox3.Image = Resources.Arrow_LeftF;
+                }
+                else
+                {
+                    ArrowBox3.Image = Resources.Arrow_Left;
+                }
+            }
+        }
+        public bool Right
+        {
+            set
+            {
+                if (value != false)
+                {
+                    ArrowBox4.Image = Resources.Arrow_RightF;
+                }
+                else
+                {
+                    ArrowBox4.Image = Resources.Arrow_Right;
+                }
+            }
+        }
+
 
         public Bitmap MainBoard
         {
@@ -157,7 +227,10 @@ namespace Tetris
                 if (value == 0)
                 {
                     if (timer1.Enabled != false)
+                    {
                         timer1.Enabled = false;
+                        timer1.Stop();
+                    }
                 }
                 else
                 {
@@ -177,7 +250,6 @@ namespace Tetris
             }
             set
             {
-                //string Value = value.ToString();
                 SetNumbers(value.ToString(), ScoreBoxes);
                 score = value;
             }
@@ -194,40 +266,7 @@ namespace Tetris
                 string Value = value.ToString();
                 for (int i = 0; i < Value.Length; i++)
                 {
-                    switch (Value[i])
-                    {
-                        case '0':
-                            TopScoreBoxes[i].Image = Resources.TopScore_0;
-                            break;
-                        case '1':
-                            TopScoreBoxes[i].Image = Resources.TopScore_1;
-                            break;
-                        case '2':
-                            TopScoreBoxes[i].Image = Resources.TopScore_2;
-                            break;
-                        case '3':
-                            TopScoreBoxes[i].Image = Resources.TopScore_3;
-                            break;
-                        case '4':
-                            TopScoreBoxes[i].Image = Resources.TopScore_4;
-                            break;
-                        case '5':
-                            TopScoreBoxes[i].Image = Resources.TopScore_5;
-                            break;
-                        case '6':
-                            TopScoreBoxes[i].Image = Resources.TopScore_6;
-                            break;
-                        case '7':
-                            TopScoreBoxes[i].Image = Resources.TopScore_7;
-                            break;
-                        case '8':
-                            TopScoreBoxes[i].Image = Resources.TopScore_8;
-                            break;
-                        case '9':
-                            TopScoreBoxes[i].Image = Resources.TopScore_9;
-                            break;
-
-                    }
+                    TopScoreBoxes[i].Image = (Bitmap)Resources.ResourceManager.GetObject("TopScore_" + Value[i]); 
                 }
                 Settings.Default["TopScore"] = value;
             }
@@ -254,25 +293,10 @@ namespace Tetris
             }
             set
             {
-                switch (value)
-                {
-                    case 1:
-                        LevelBox.Image = Resources.Level_1;
-                        break;
-                    case 2:
-                        LevelBox.Image = Resources.Level_2;
-                        break;
-                    case 3:
-                        LevelBox.Image = Resources.Level_3;
-                        break;
-                }
+                LevelBox.Image = (Bitmap)Resources.ResourceManager.GetObject("Level_" + value);
                 level = value;
             }
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }

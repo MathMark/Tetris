@@ -32,17 +32,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.BestResultlabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.TopScoreBox6 = new System.Windows.Forms.PictureBox();
             this.TopScoreBox5 = new System.Windows.Forms.PictureBox();
             this.TopScoreBox4 = new System.Windows.Forms.PictureBox();
             this.TopScoreBox3 = new System.Windows.Forms.PictureBox();
             this.TopScoreBox2 = new System.Windows.Forms.PictureBox();
             this.TopScoreBox1 = new System.Windows.Forms.PictureBox();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.ScoreBox6 = new System.Windows.Forms.PictureBox();
             this.ScoreBox5 = new System.Windows.Forms.PictureBox();
             this.ScoreBox4 = new System.Windows.Forms.PictureBox();
@@ -53,22 +50,26 @@
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.LineBox1 = new System.Windows.Forms.PictureBox();
             this.LineBox2 = new System.Windows.Forms.PictureBox();
             this.LevelBox = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.RandomBSheet = new System.Windows.Forms.PictureBox();
             this.Sheet = new System.Windows.Forms.PictureBox();
+            this.ArrowBox1 = new System.Windows.Forms.PictureBox();
+            this.ArrowBox2 = new System.Windows.Forms.PictureBox();
+            this.ArrowBox3 = new System.Windows.Forms.PictureBox();
+            this.ArrowBox4 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TopScoreBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TopScoreBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TopScoreBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TopScoreBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TopScoreBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TopScoreBox1)).BeginInit();
+            this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ScoreBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ScoreBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ScoreBox4)).BeginInit();
@@ -79,11 +80,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LineBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LineBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LevelBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RandomBSheet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Sheet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ArrowBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ArrowBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ArrowBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ArrowBox4)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -97,58 +104,10 @@
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.tableLayoutPanel1);
             this.panel1.Controls.Add(this.LevelBox);
-            this.panel1.Location = new System.Drawing.Point(419, 257);
+            this.panel1.Location = new System.Drawing.Point(420, 229);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(320, 494);
+            this.panel1.Size = new System.Drawing.Size(320, 463);
             this.panel1.TabIndex = 10;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Controls.Add(this.LineBox1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.LineBox2, 1, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(17, 163);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(80, 45);
-            this.tableLayoutPanel1.TabIndex = 17;
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 6;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel2.Controls.Add(this.ScoreBox6, 5, 0);
-            this.tableLayoutPanel2.Controls.Add(this.ScoreBox5, 4, 0);
-            this.tableLayoutPanel2.Controls.Add(this.ScoreBox4, 3, 0);
-            this.tableLayoutPanel2.Controls.Add(this.ScoreBox3, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.ScoreBox2, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.ScoreBox1, 0, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(17, 282);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 51F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(256, 51);
-            this.tableLayoutPanel2.TabIndex = 22;
-            // 
-            // BestResultlabel
-            // 
-            this.BestResultlabel.AutoSize = true;
-            this.BestResultlabel.Location = new System.Drawing.Point(642, 765);
-            this.BestResultlabel.Name = "BestResultlabel";
-            this.BestResultlabel.Size = new System.Drawing.Size(35, 13);
-            this.BestResultlabel.TabIndex = 21;
-            this.BestResultlabel.Text = "label1";
             // 
             // tableLayoutPanel3
             // 
@@ -165,24 +124,13 @@
             this.tableLayoutPanel3.Controls.Add(this.TopScoreBox3, 2, 0);
             this.tableLayoutPanel3.Controls.Add(this.TopScoreBox2, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.TopScoreBox1, 0, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(14, 420);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(14, 405);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 51F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(256, 51);
             this.tableLayoutPanel3.TabIndex = 23;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(420, 20);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(139, 71);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 20;
-            this.pictureBox3.TabStop = false;
             // 
             // TopScoreBox6
             // 
@@ -249,6 +197,29 @@
             this.TopScoreBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.TopScoreBox1.TabIndex = 23;
             this.TopScoreBox1.TabStop = false;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 6;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel2.Controls.Add(this.ScoreBox6, 5, 0);
+            this.tableLayoutPanel2.Controls.Add(this.ScoreBox5, 4, 0);
+            this.tableLayoutPanel2.Controls.Add(this.ScoreBox4, 3, 0);
+            this.tableLayoutPanel2.Controls.Add(this.ScoreBox3, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.ScoreBox2, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.ScoreBox1, 0, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(17, 282);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 51F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(256, 51);
+            this.tableLayoutPanel2.TabIndex = 22;
             // 
             // ScoreBox6
             // 
@@ -360,6 +331,21 @@
             this.pictureBox1.TabIndex = 18;
             this.pictureBox1.TabStop = false;
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Controls.Add(this.LineBox1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.LineBox2, 1, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(17, 163);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(80, 45);
+            this.tableLayoutPanel1.TabIndex = 17;
+            // 
             // LineBox1
             // 
             this.LineBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
@@ -392,10 +378,21 @@
             this.LevelBox.TabIndex = 8;
             this.LevelBox.TabStop = false;
             // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(420, 20);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(139, 57);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 20;
+            this.pictureBox3.TabStop = false;
+            // 
             // RandomBSheet
             // 
             this.RandomBSheet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.RandomBSheet.Location = new System.Drawing.Point(419, 97);
+            this.RandomBSheet.Location = new System.Drawing.Point(420, 83);
             this.RandomBSheet.Name = "RandomBSheet";
             this.RandomBSheet.Size = new System.Drawing.Size(140, 140);
             this.RandomBSheet.TabIndex = 9;
@@ -410,30 +407,75 @@
             this.Sheet.TabIndex = 8;
             this.Sheet.TabStop = false;
             // 
+            // ArrowBox1
+            // 
+            this.ArrowBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.ArrowBox1.Image = ((System.Drawing.Image)(resources.GetObject("ArrowBox1.Image")));
+            this.ArrowBox1.Location = new System.Drawing.Point(467, 698);
+            this.ArrowBox1.Name = "ArrowBox1";
+            this.ArrowBox1.Size = new System.Drawing.Size(50, 42);
+            this.ArrowBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ArrowBox1.TabIndex = 21;
+            this.ArrowBox1.TabStop = false;
+            // 
+            // ArrowBox2
+            // 
+            this.ArrowBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.ArrowBox2.Image = ((System.Drawing.Image)(resources.GetObject("ArrowBox2.Image")));
+            this.ArrowBox2.Location = new System.Drawing.Point(467, 746);
+            this.ArrowBox2.Name = "ArrowBox2";
+            this.ArrowBox2.Size = new System.Drawing.Size(50, 42);
+            this.ArrowBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ArrowBox2.TabIndex = 22;
+            this.ArrowBox2.TabStop = false;
+            // 
+            // ArrowBox3
+            // 
+            this.ArrowBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.ArrowBox3.Image = ((System.Drawing.Image)(resources.GetObject("ArrowBox3.Image")));
+            this.ArrowBox3.Location = new System.Drawing.Point(419, 720);
+            this.ArrowBox3.Name = "ArrowBox3";
+            this.ArrowBox3.Size = new System.Drawing.Size(42, 50);
+            this.ArrowBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ArrowBox3.TabIndex = 23;
+            this.ArrowBox3.TabStop = false;
+            // 
+            // ArrowBox4
+            // 
+            this.ArrowBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.ArrowBox4.Image = ((System.Drawing.Image)(resources.GetObject("ArrowBox4.Image")));
+            this.ArrowBox4.Location = new System.Drawing.Point(523, 720);
+            this.ArrowBox4.Name = "ArrowBox4";
+            this.ArrowBox4.Size = new System.Drawing.Size(42, 50);
+            this.ArrowBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ArrowBox4.TabIndex = 24;
+            this.ArrowBox4.TabStop = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.ClientSize = new System.Drawing.Size(770, 802);
-            this.Controls.Add(this.BestResultlabel);
+            this.ClientSize = new System.Drawing.Size(770, 808);
+            this.Controls.Add(this.ArrowBox4);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.RandomBSheet);
             this.Controls.Add(this.Sheet);
+            this.Controls.Add(this.ArrowBox3);
+            this.Controls.Add(this.ArrowBox1);
+            this.Controls.Add(this.ArrowBox2);
             this.Name = "MainForm";
-            this.Text = "MainForm";
+            this.Text = "Tetris";
             this.panel1.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TopScoreBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TopScoreBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TopScoreBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TopScoreBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TopScoreBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TopScoreBox1)).EndInit();
+            this.tableLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ScoreBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ScoreBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ScoreBox4)).EndInit();
@@ -444,13 +486,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.LineBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LineBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LevelBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RandomBSheet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Sheet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ArrowBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ArrowBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ArrowBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ArrowBox4)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -476,7 +523,6 @@
         private System.Windows.Forms.PictureBox ScoreBox3;
         private System.Windows.Forms.PictureBox ScoreBox2;
         private System.Windows.Forms.PictureBox ScoreBox1;
-        private System.Windows.Forms.Label BestResultlabel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.PictureBox TopScoreBox6;
         private System.Windows.Forms.PictureBox TopScoreBox5;
@@ -484,5 +530,9 @@
         private System.Windows.Forms.PictureBox TopScoreBox3;
         private System.Windows.Forms.PictureBox TopScoreBox2;
         private System.Windows.Forms.PictureBox TopScoreBox1;
+        private System.Windows.Forms.PictureBox ArrowBox1;
+        private System.Windows.Forms.PictureBox ArrowBox2;
+        private System.Windows.Forms.PictureBox ArrowBox3;
+        private System.Windows.Forms.PictureBox ArrowBox4;
     }
 }

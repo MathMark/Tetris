@@ -107,9 +107,6 @@
     <None Include="Resources\Yellow.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\SexyRed.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\0.png" />
   </ItemGroup>
   <ItemGroup>
@@ -183,6 +180,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\TopScore_9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Arrow_Down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Arrow_DownF.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Arrow_Left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Arrow_LeftF.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Arrow_Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Arrow_RightF.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Arrow_Up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Arrow_UpF.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

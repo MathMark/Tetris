@@ -36,7 +36,7 @@ namespace Tetris.Presenter
         int indexOfNextBlock;
 
         event EventHandler GameOver;
-
+        static bool gameOver=false;
         public int IndexOfNextBlock
         {
             get
@@ -139,6 +139,7 @@ namespace Tetris.Presenter
 
             board.Clear();
             Painter.ColorArea = Color.Empty;
+            gameOver = true;
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -171,6 +172,7 @@ namespace Tetris.Presenter
                         Settings.Default["TopScore"] = View.Score;
                         Settings.Default.Save();
                     }
+                    gameOver = false;
                     Painter.ColorArea = Color.Black;
                     board.Clear();
                     View.Score = 0;
@@ -202,7 +204,7 @@ namespace Tetris.Presenter
                         Painter.PrintPause();
                         View.MainBoard = Draft;
                     }
-                    else
+                    else if(!gameOver)
                     {
                        Speed = defaultSpeed;
                     }

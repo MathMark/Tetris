@@ -157,22 +157,12 @@ namespace Tetris.Presenter
         {
             switch (e.KeyCode.ToString())
             {
-                case "Up":
-                    View.Up = false;
-                    break;
                 case "Down":
                     if (Speed != 0)
                     {
-                        View.Down = false;
                         Speed = defaultSpeed;
                     }
                     
-                    break;
-                case "Left":
-                    View.Left = false;
-                    break;
-                case "Right":
-                    View.Right = false;
                     break;
                 case "R"://Restart
 
@@ -280,20 +270,16 @@ namespace Tetris.Presenter
                 switch (e.KeyCode.ToString())
                 {
                     case "Left":
-                        View.Left = true;
                         block.MoveToLeft();
                         break;
                     case "Right":
-                        View.Right = true;
                         block.MoveToRight();
                         break;
                     case "Up":
-                        View.Up = true;
                         block.Rotate();
                         break;
 
                     case "Down":
-                        View.Down = true;
                         Speed = accelerate;
                         break;
                 }

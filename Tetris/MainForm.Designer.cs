@@ -57,10 +57,6 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.RandomBSheet = new System.Windows.Forms.PictureBox();
             this.Sheet = new System.Windows.Forms.PictureBox();
-            this.ArrowBox1 = new System.Windows.Forms.PictureBox();
-            this.ArrowBox2 = new System.Windows.Forms.PictureBox();
-            this.ArrowBox3 = new System.Windows.Forms.PictureBox();
-            this.ArrowBox4 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TopScoreBox6)).BeginInit();
@@ -87,10 +83,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RandomBSheet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Sheet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ArrowBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ArrowBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ArrowBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ArrowBox4)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -106,7 +98,7 @@
             this.panel1.Controls.Add(this.LevelBox);
             this.panel1.Location = new System.Drawing.Point(420, 229);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(320, 463);
+            this.panel1.Size = new System.Drawing.Size(320, 561);
             this.panel1.TabIndex = 10;
             // 
             // tableLayoutPanel3
@@ -124,7 +116,7 @@
             this.tableLayoutPanel3.Controls.Add(this.TopScoreBox3, 2, 0);
             this.tableLayoutPanel3.Controls.Add(this.TopScoreBox2, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.TopScoreBox1, 0, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(14, 405);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(14, 502);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -213,7 +205,7 @@
             this.tableLayoutPanel2.Controls.Add(this.ScoreBox3, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.ScoreBox2, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.ScoreBox1, 0, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(17, 282);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(17, 351);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -291,7 +283,7 @@
             // 
             this.pictureBox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(9, 349);
+            this.pictureBox5.Location = new System.Drawing.Point(9, 446);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(156, 50);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -302,7 +294,7 @@
             // 
             this.pictureBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(9, 214);
+            this.pictureBox4.Location = new System.Drawing.Point(9, 283);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(123, 51);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -313,7 +305,7 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(9, 105);
+            this.pictureBox2.Location = new System.Drawing.Point(9, 149);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(123, 52);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -324,7 +316,7 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(9, 3);
+            this.pictureBox1.Location = new System.Drawing.Point(9, 28);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(123, 45);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -339,7 +331,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Controls.Add(this.LineBox1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.LineBox2, 1, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(17, 163);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(17, 207);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -371,7 +363,7 @@
             // LevelBox
             // 
             this.LevelBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.LevelBox.Location = new System.Drawing.Point(20, 54);
+            this.LevelBox.Location = new System.Drawing.Point(20, 79);
             this.LevelBox.Name = "LevelBox";
             this.LevelBox.Size = new System.Drawing.Size(36, 45);
             this.LevelBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -407,64 +399,16 @@
             this.Sheet.TabIndex = 8;
             this.Sheet.TabStop = false;
             // 
-            // ArrowBox1
-            // 
-            this.ArrowBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.ArrowBox1.Image = ((System.Drawing.Image)(resources.GetObject("ArrowBox1.Image")));
-            this.ArrowBox1.Location = new System.Drawing.Point(467, 698);
-            this.ArrowBox1.Name = "ArrowBox1";
-            this.ArrowBox1.Size = new System.Drawing.Size(50, 42);
-            this.ArrowBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ArrowBox1.TabIndex = 21;
-            this.ArrowBox1.TabStop = false;
-            // 
-            // ArrowBox2
-            // 
-            this.ArrowBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.ArrowBox2.Image = ((System.Drawing.Image)(resources.GetObject("ArrowBox2.Image")));
-            this.ArrowBox2.Location = new System.Drawing.Point(467, 746);
-            this.ArrowBox2.Name = "ArrowBox2";
-            this.ArrowBox2.Size = new System.Drawing.Size(50, 42);
-            this.ArrowBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ArrowBox2.TabIndex = 22;
-            this.ArrowBox2.TabStop = false;
-            // 
-            // ArrowBox3
-            // 
-            this.ArrowBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.ArrowBox3.Image = ((System.Drawing.Image)(resources.GetObject("ArrowBox3.Image")));
-            this.ArrowBox3.Location = new System.Drawing.Point(419, 720);
-            this.ArrowBox3.Name = "ArrowBox3";
-            this.ArrowBox3.Size = new System.Drawing.Size(42, 50);
-            this.ArrowBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ArrowBox3.TabIndex = 23;
-            this.ArrowBox3.TabStop = false;
-            // 
-            // ArrowBox4
-            // 
-            this.ArrowBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.ArrowBox4.Image = ((System.Drawing.Image)(resources.GetObject("ArrowBox4.Image")));
-            this.ArrowBox4.Location = new System.Drawing.Point(523, 720);
-            this.ArrowBox4.Name = "ArrowBox4";
-            this.ArrowBox4.Size = new System.Drawing.Size(42, 50);
-            this.ArrowBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ArrowBox4.TabIndex = 24;
-            this.ArrowBox4.TabStop = false;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.ClientSize = new System.Drawing.Size(770, 808);
-            this.Controls.Add(this.ArrowBox4);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.RandomBSheet);
             this.Controls.Add(this.Sheet);
-            this.Controls.Add(this.ArrowBox3);
-            this.Controls.Add(this.ArrowBox1);
-            this.Controls.Add(this.ArrowBox2);
             this.Name = "MainForm";
             this.Text = "Tetris";
             this.panel1.ResumeLayout(false);
@@ -493,10 +437,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RandomBSheet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Sheet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ArrowBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ArrowBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ArrowBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ArrowBox4)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -530,9 +470,5 @@
         private System.Windows.Forms.PictureBox TopScoreBox3;
         private System.Windows.Forms.PictureBox TopScoreBox2;
         private System.Windows.Forms.PictureBox TopScoreBox1;
-        private System.Windows.Forms.PictureBox ArrowBox1;
-        private System.Windows.Forms.PictureBox ArrowBox2;
-        private System.Windows.Forms.PictureBox ArrowBox3;
-        private System.Windows.Forms.PictureBox ArrowBox4;
     }
 }

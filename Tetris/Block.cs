@@ -9,7 +9,6 @@ namespace Tetris
     public class Block:IMove
     {
         public static event Action ArrivedAtBottom;
-        public static  event Action GameOver;
 
         int typeBlock;
         public Point d;
@@ -123,11 +122,15 @@ namespace Tetris
                     unit = Resources.Purple;
                     break;
             }
+
+        }
+        public bool Over()
+        {
             if (board.CheckExistence(new Point(d.Y + skeleton.GetLength(0), d.X)) == true)
             {
-                GameOver();
+                return true;
             }
-
+            return false;
         }
         public void MoveToLeft()
         {

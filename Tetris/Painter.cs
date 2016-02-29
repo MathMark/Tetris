@@ -12,11 +12,13 @@ namespace Tetris
         private int Width;
         private int Height;
 
+        public Color ColorArea;
 
         public Painter(Bitmap Sheet,float BlockSize)
         {
             this.BlockSize = BlockSize;
             color = Color.FromArgb(50, 50, 50);
+            ColorArea = Color.Black;
 
             this.Width = Sheet.Width;
             this.Height = Sheet.Height;
@@ -29,7 +31,7 @@ namespace Tetris
         }
         public void DrawArea()
         {
-            Pen pen = new Pen(Color.Black, 1);
+            Pen pen = new Pen(ColorArea, 1);
             for (float i = 0; i < Height; i += BlockSize)
             {
                 painter.DrawLine(pen, 0, i, Width, i);
@@ -42,7 +44,8 @@ namespace Tetris
 
         public void PrintGameOver()
         {
-            painter.DrawString("GAME OVER", new Font("Consolas", 16, FontStyle.Bold), new SolidBrush(Color.Gold), new Point(Width/2-10,Height/2));
+            Clear();
+            painter.DrawImage(Resources.GameOver, new Point(0, 0));
         }
         public void PrintPause()
         {

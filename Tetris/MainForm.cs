@@ -12,7 +12,6 @@ namespace Tetris
         Bitmap Board { get; set; }
         int Level { get; set; }
         int Score { get; set; }
-        int Speed { get; set; }
         int FullLinesCounter { get; set; }
         int TopScore { get; set; }
         int MainBoardWidth { get; }
@@ -28,7 +27,6 @@ namespace Tetris
 
         event KeyEventHandler windowKeyDown;
         event KeyEventHandler windowKeyUp;
-        event EventHandler TimerTick;
     }
 
     public partial class MainForm : Form,IMainWindow
@@ -36,13 +34,7 @@ namespace Tetris
         public MainForm()
         {
             InitializeComponent();
-            timer1.Tick += (object sender, EventArgs e) =>
-            {
-                if (TimerTick != null)
-                {
-                    TimerTick(this, EventArgs.Empty);
-                }
-            };
+
             KeyDown += (object sender, KeyEventArgs e) =>
             {
                 windowKeyDown(this, e);
@@ -57,17 +49,10 @@ namespace Tetris
             TopScoreBoxes = new PictureBox[] { TopScoreBox1, TopScoreBox2, TopScoreBox3, TopScoreBox4, TopScoreBox5, TopScoreBox6 };
             SetNull();
 
-            Block.GameOver += Block_GameOver;
-
-        }
-        private void Block_GameOver()
-        {
-            Speed=0;
         }
 
         public event KeyEventHandler windowKeyDown;
         public event KeyEventHandler windowKeyUp;
-        public event EventHandler TimerTick;
 
         public void SetNull()
         {
@@ -212,35 +197,35 @@ namespace Tetris
         }
 
 
-        public int Speed
-        {
-            get
-            {
-                if (timer1.Enabled == false)
-                {
-                    return 0;
-                }
-                return timer1.Interval;
-            }
-            set
-            {
-                if (value == 0)
-                {
-                    if (timer1.Enabled != false)
-                    {
-                        timer1.Enabled = false;
-                        timer1.Stop();
-                    }
-                }
-                else
-                {
-                    if (timer1.Enabled != false)
-                        timer1.Enabled = false;
-                    timer1.Interval = value;
-                    timer1.Enabled = true;
-                }
-            }
-        }
+        //public int Speed
+        //{
+        //    get
+        //    {
+        //        if (timer1.Enabled == false)
+        //        {
+        //            return 0;
+        //        }
+        //        return timer1.Interval;
+        //    }
+        //    set
+        //    {
+        //        if (value == 0)
+        //        {
+        //            if (timer1.Enabled != false)
+        //            {
+        //                timer1.Enabled = false;
+        //                timer1.Stop();
+        //            }
+        //        }
+        //        else
+        //        {
+        //            if (timer1.Enabled != false)
+        //                timer1.Enabled = false;
+        //            timer1.Interval = value;
+        //            timer1.Enabled = true;
+        //        }
+        //    }
+        //}
         int score;
         public int Score
         {

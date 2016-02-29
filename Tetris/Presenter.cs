@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Drawing;
 using Tetris.Properties;
+using System.Windows.Forms;
 
 namespace Tetris.Presenter
 {
@@ -34,6 +35,7 @@ namespace Tetris.Presenter
 
         int indexOfNextBlock;
 
+        event EventHandler GameOver;
 
         public int IndexOfNextBlock
         {
@@ -55,10 +57,39 @@ namespace Tetris.Presenter
             }
         }
 
+        static Timer timer;
+        public int Speed
+        {
+            get
+            {
+                if (timer.Enabled == false)
+                {
+                    return 0;
+                }
+                return timer.Interval;
+            }
+            set
+            {
+                if (value == 0)
+                {
+                    timer.Stop();
+                }
+                else
+                {
+                    
+                    timer.Interval = value;
+                    timer.Start();
+                }
+            }
+        }
 
         public presenter(IMainWindow View)
         {
+            timer = new Timer();
+            timer.Tick += Timer_Tick;
+
             this.View = View;
+
             BlockSize = Block.BlockSize;
             View.TopScore = (int)Settings.Default["TopScore"];
 
@@ -85,18 +116,41 @@ namespace Tetris.Presenter
             ShowNextBlock();
 
             View.Level = 1;
-            View.Speed = defaultSpeed;
+            
             View.Score = 0;
-            //timer1.Enabled = true;
 
             Block.ArrivedAtBottom += Block_ArrivedAtBottom;
             board.FullLine += Board_FullLine;
-            Block.GameOver += Block_GameOver;
             View.windowKeyDown += View_windowKeyDown;
-            View.TimerTick += View_TimerTick;
             View.windowKeyUp += View_windowKeyUp;
+            GameOver += Presenter_GameOver;
 
             View.FullLinesCounter = 0;
+
+            Speed = defaultSpeed;
+        }
+
+        private void Presenter_GameOver(object sender, EventArgs e)
+        {
+            Speed = 0;
+            
+            Painter.PrintGameOver();
+            View.MainBoard = Draft;
+
+            board.Clear();
+            Painter.ColorArea = Color.Empty;
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            Painter.Clear();
+
+            block.MoveToDown();
+
+            board.DrawBlocks(Draft, BlockSize);
+
+            Painter.DrawArea();
+            View.MainBoard = Draft;
         }
 
         private void View_windowKeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
@@ -107,10 +161,10 @@ namespace Tetris.Presenter
                     View.Up = false;
                     break;
                 case "Down":
-                    if (View.Speed != 0)
+                    if (Speed != 0)
                     {
                         View.Down = false;
-                        View.Speed = defaultSpeed;
+                        Speed = defaultSpeed;
                     }
                     
                     break;
@@ -127,6 +181,7 @@ namespace Tetris.Presenter
                         Settings.Default["TopScore"] = View.Score;
                         Settings.Default.Save();
                     }
+                    Painter.ColorArea = Color.Black;
                     board.Clear();
                     View.Score = 0;
                     View.FullLinesCounter = 0;
@@ -147,51 +202,29 @@ namespace Tetris.Presenter
                     ShowNextBlock();
 
                     View.SetNull();
-                    View.Speed = defaultSpeed;
-                    //timer1.Enabled = true;
+                    Speed = defaultSpeed;
                     break;
 
                 case "P":
-                    if (View.Speed != 0)
+                    if (Speed != 0)
                     {
-                        View.Speed = 0;
+                        Speed = 0;
                         Painter.PrintPause();
                         View.MainBoard = Draft;
                     }
                     else
                     {
-                       View.Speed = defaultSpeed;
+                       Speed = defaultSpeed;
                     }
                     break;
                 case "C":
+
                     View.TopScore = 0;
                     View.SetTopScoreToNull();
                     Settings.Default.Save();
 
                     break;
             }
-        }
-
-        private void View_TimerTick(object sender, EventArgs e)
-        {
-            Painter.Clear();
-
-            block.MoveToDown();
-
-            board.DrawBlocks(Draft, BlockSize);
-
-            Painter.DrawArea();
-            View.MainBoard = Draft;
-        }
-
-        private void Block_GameOver()
-        {
-            View.Speed = 0;
-            board.Clear();
-
-            Painter.PrintGameOver();
-
-            View.MainBoard = Draft;
         }
 
         private void Board_FullLine(int index)
@@ -211,7 +244,7 @@ namespace Tetris.Presenter
                 accelerate = 1;
                 incrementScore = new Point(35, 100);
             }
-            View.Speed = defaultSpeed;
+            Speed = defaultSpeed;
 
             board.MoveValues(index);
 
@@ -226,15 +259,22 @@ namespace Tetris.Presenter
             board.CheckFullLines();
 
             block = new Block(blocks[IndexOfNextBlock], StartPoint, board);
-            IndexOfNextBlock++;
-            ShowNextBlock();
+            if (block.Over()==true)
+            {
+                GameOver(this,EventArgs.Empty);
+            }
+            else
+            {
+                IndexOfNextBlock++;
+                ShowNextBlock();
 
-            View.Speed = defaultSpeed;
+                Speed = defaultSpeed;
+            }
         }
 
         private void View_windowKeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
-            if (View.Speed != 0)
+            if (Speed != 0)
             {
                 Painter.Clear();
                 switch (e.KeyCode.ToString())
@@ -254,7 +294,7 @@ namespace Tetris.Presenter
 
                     case "Down":
                         View.Down = true;
-                        View.Speed = accelerate;
+                        Speed = accelerate;
                         break;
                 }
                 board.DrawBlocks(Draft, BlockSize);

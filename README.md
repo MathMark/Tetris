@@ -1,6 +1,6 @@
 # Tetris
 
-This is a simple classic tetris, but with colored pieces. 
+A simple classic tetris. 
 
 ![Screenshot](https://pp.vk.me/c629630/v629630649/4917/aI8CbuIMh1c.jpg)
 
